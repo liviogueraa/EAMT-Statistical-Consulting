@@ -42,3 +42,18 @@ keybp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
 
 timebp/keybp
 
+
+
+##### Categorical Variables #####
+
+data <- read.csv("data/data.csv")
+data_categorical <- data[,-c(7,8,9,10,11,12,13)]
+
+# factorizing and summarising the variables
+data_categorical[] <- lapply(data_categorical, as.factor)
+sapply(data_categorical, unique, simplify = FALSE)
+
+# Creating tables per variable
+# The corrected error "tags_edited" is removed, for simplicity of visualization
+
+lapply(data_categorical[,-7], table)
