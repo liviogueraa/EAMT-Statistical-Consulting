@@ -2,12 +2,11 @@
 # ----- THIS SECTION IS DEDICATED TO A PRIOR ANALYSIS OF THE DATASET ----- #
 ############################################################################
 
+#=======
 # Required Packages
 library(readr)
 library(ggplot2)
 library(dplyr)
-
-#=======
 library(see)
 library(patchwork)
 
@@ -15,13 +14,23 @@ library(patchwork)
 data <- read_csv("data/data.csv")
 
 #=======
-# Tables  
-table(data$condition)
-table(data$domain)
+# Factorization of categorical variables
+data_categorical <- data[,-c(7,8,9,10,11,12,13)]
 
+data_categorical[] <- lapply(data_categorical, as.factor)
+sapply(data_categorical, unique, simplify = FALSE)
+
+# Creating tables per variable
+# The corrected error "tags_edited" is removed, for simplicity of visualization
+
+lapply(data_categorical[,-7], table)
+
+#=======
 # Figures
+# Boxplots of Keystrokes and Time per Condition
+
 timebp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
-                 y = time, fill = as.factor(condition))) + 
+                                            y = time, fill = as.factor(condition))) + 
   geom_boxplot() +
   theme_minimal() +
   scale_fill_okabeito(order = 3:6) +
@@ -31,7 +40,7 @@ timebp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
   theme(legend.position = "none")
 
 keybp <- ggplot(data = data, mapping = aes(x = as.factor(condition), 
-                y = keystrokes, fill = as.factor(condition))) + 
+                                           y = keystrokes, fill = as.factor(condition))) + 
   geom_boxplot() +
   theme_minimal() +
   scale_fill_okabeito(order = 3:6) +
@@ -42,18 +51,42 @@ keybp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
 
 timebp/keybp
 
+# Boxplots of Keystrokes and Time per Condition for each Professional Translator
 
+timebp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = time)) + 
+  geom_boxplot(aes(fill = as.factor(condition)), alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4, size = 1) + 
+  facet_wrap(~ PET, ncol = 4) + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Temporal Efficiency per Condition",
+       subtitle = "Divided by Professional Translator",
+       x = "Condition",
+       y = "Time (Seconds)") +
+  
+  theme(legend.position = "none", 
+        strip.background = element_rect(fill = "gray90"), 
+        panel.spacing = unit(1, "lines")) 
 
-##### Categorical Variables #####
+print(timebp_faceted)
 
-data <- read.csv("data/data.csv")
-data_categorical <- data[,-c(7,8,9,10,11,12,13)]
+keybp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = keystrokes)) + 
+  geom_boxplot(aes(fill = as.factor(condition)), alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4, size = 1) + 
+  facet_wrap(~ PET, ncol = 4) + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Keystrokes per Condition",
+       subtitle = "Divided by Professional Translator",
+       x = "Condition",
+       y = "Number of Keystrokes") +
+  
+  theme(legend.position = "none", 
+        strip.background = element_rect(fill = "gray90"), 
+        panel.spacing = unit(1, "lines")) 
 
-# factorizing and summarising the variables
-data_categorical[] <- lapply(data_categorical, as.factor)
-sapply(data_categorical, unique, simplify = FALSE)
-
-# Creating tables per variable
-# The corrected error "tags_edited" is removed, for simplicity of visualization
-
-lapply(data_categorical[,-7], table)
+print(keybp_faceted)
