@@ -100,6 +100,7 @@ table(data$condition, data$`How difficult to translate was the source text?`)
 
 table(data$condition, data$num_major)
 table(data$condition, data$num_minor)
+
 #=======
 # Figures
 #
@@ -270,6 +271,15 @@ ggplot(data, aes(x = condition, fill = `How good was the quality of MT?`)) +
   labs(title = "Percieved Quality of MT per Condition",
        y = "Percentage", x = "Condition")
 
+table(data$text_name, data$condition)
+ggplot(data, aes(x = text_name, y = log(time), color = condition)) +
+  geom_boxplot() +
+  facet_wrap(~domain, scales = "free_x") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Intra-text correlation check",
+       subtitle = "Ognuno di questi box rappresenta la correlazione che vogliamo gestire")
+
 #
 # Testing correlation between continuous variables and outcomes
 #
@@ -339,15 +349,3 @@ p14 <- ggplot(plot_data, aes(x = num_minor, y = log_keystrokes)) +
   theme_minimal() + labs(title = "Keystrokes vs Minor Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
 
 (p11 | p12) / (p13 | p14) + plot_layout(guides = 'collect')
-
-#
-# PILOT MODEL
-#
-
-data$condition <- as.factor(data$condition)
-
-m_nested <- lmer(log(time + 1) ~ condition + num_characters + num_minor + (1 | PET) + (1 |text_name:TEXT), 
-                 data = data)
-
-
-summary(m_nested)
