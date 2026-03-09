@@ -26,6 +26,25 @@ sapply(data_categorical, unique, simplify = FALSE)
 lapply(data_categorical[,-7], table)
 
 #=======
+# Tables
+
+table(data$PET, data$`How accurate were the translation suggestions?`)
+table(data$PET, data$`How useful were the translation suggestions?`)
+table(data$PET, data$`How good was the quality of MT?`)
+table(data$`How good was the quality of MT?`, data$condition)
+table(data$text_name, data$`How good was the quality of MT?`)
+table(data$condition, data$`How difficult to translate was the source text?`)
+table(data$condition, data$`How good was the quality of MT?`)
+
+data %>%
+  group_by(`How good was the quality of MT?`) %>%
+  summarise(mean_time = mean(time, na.rm = TRUE),
+            mean_keys = mean(keystrokes, na.rm = TRUE),
+            n = n())
+
+table(data$condition, data$num_major)
+table(data$condition, data$num_minor)
+#=======
 # Figures
 # Boxplots of Keystrokes and Time per Condition
 
@@ -90,3 +109,4 @@ keybp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = keystroke
         panel.spacing = unit(1, "lines")) 
 
 print(keybp_faceted)
+
