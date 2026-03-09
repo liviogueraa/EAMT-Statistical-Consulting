@@ -78,9 +78,9 @@ Plotting tables showing the categories
 library(ggplot2)
 library(patchwork)
 
-# Adding log transformed as new variables
-data$log_time <- log(data$time)
-data$log_keystrokes <- log(data$keystrokes)
+# Adding log transformed (plus 1 since there are some zeroes) as new variables
+data$log_time <- log(data$time+1)
+data$log_keystrokes <- log(data$keystrokes+1)
 
 # Time and keystrokes (log transformed) distributions
 p_log <- ggplot(data) +
