@@ -96,7 +96,9 @@ table(data$condition, data$num_major)
 table(data$condition, data$num_minor)
 #=======
 # Figures
+#
 # Boxplots of Keystrokes and Time per Condition
+#
 
 timebp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
                                             y = time, fill = as.factor(condition))) + 
@@ -120,7 +122,9 @@ keybp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
 
 timebp/keybp
 
+#
 # Boxplots of Keystrokes and Time per Condition for each Professional Translator
+#
 
 timebp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = time)) + 
   geom_boxplot(aes(fill = as.factor(condition)), alpha = 0.6, outlier.shape = NA) +
@@ -160,3 +164,92 @@ keybp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = keystroke
 
 print(keybp_faceted)
 
+#
+# Stacked Bar Chart of Perceived Quality of MT
+#
+
+ggplot(data, aes(x = condition, fill = `How good was the quality of MT?`)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  labs(title = "Percieved Quality of MT per Condition",
+       y = "Percentage", x = "Condition")
+
+table(data$text_name, data$condition)
+ggplot(data, aes(x = text_name, y = log(time), color = condition)) +
+  geom_boxplot() +
+  facet_wrap(~domain, scales = "free_x") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Intra-text correlation check",
+       subtitle = "Ognuno di questi box rappresenta la correlazione che vogliamo gestire")
+
+#
+# Testing correlation between continuous variables and outcomes
+#
+
+plot_data <- data %>%
+  mutate(
+    log_time = log(time),
+    log_keystrokes = log(keystrokes),
+    highlight_ratio = as.numeric(as.character(highlight_ratio)),
+    num_characters = as.numeric(as.character(num_characters)),
+    condition = as.factor(condition)
+  ) %>%
+  filter(!is.na(highlight_ratio), !is.na(num_characters))
+
+# 1. Time vs Highlight Ratio
+p1 <- ggplot(plot_data, aes(x = highlight_ratio, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Time vs Highlight Ratio", y = "log(Time)")
+
+# 2. Keystrokes vs Highlight Ratio
+p2 <- ggplot(plot_data, aes(x = highlight_ratio, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Keystrokes vs Highlight Ratio", y = "log(Keystrokes)")
+
+# 3. Time vs Num Characters
+p3 <- ggplot(plot_data, aes(x = num_characters, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Time vs Sentence Length", x = "Num Characters", y = "log(Time)")
+
+# 4. Keystrokes vs Num Characters
+p4 <- ggplot(plot_data, aes(x = num_characters, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Keystrokes vs Sentence Length", x = "Num Characters", y = "log(Keystrokes)")
+
+(p1 | p2) / (p3 | p4) + plot_layout(guides = 'collect')
+
+# 
+# Number of major and Minor errors compared to time and Keystrokes
+#
+
+# 1. Time vs Highlight Ratio
+p11 <- ggplot(plot_data, aes(x = num_major, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Time vs Major Errors", x = "Num of Minor Errors", y = "log(Time)")
+
+# 2. Keystrokes vs Highlight Ratio
+p12 <- ggplot(plot_data, aes(x = num_major, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Keystrokes vs Major Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
+
+# 3. Time vs Num Characters
+p13 <- ggplot(plot_data, aes(x = num_minor, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Time vs Minor Errors", x = "Num of Minor Errors", y = "log(Time)")
+
+# 4. Keystrokes vs Num Characters
+p14 <- ggplot(plot_data, aes(x = num_minor, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Keystrokes vs Minor Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
+
+(p11 | p12) / (p13 | p14) + plot_layout(guides = 'collect')
