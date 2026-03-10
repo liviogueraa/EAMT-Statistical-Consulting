@@ -7,6 +7,7 @@
 library(readr)
 library(ggplot2)
 library(dplyr)
+library(tidyr)
 library(see)
 library(patchwork)
 library(lme4)
@@ -69,6 +70,8 @@ data$`How accurate were the translation suggestions?` <- factor(
 data_categorical <- data[,-c(7,8,9,10,11,12,13)]
 lapply(data_categorical[,-7], table)
 
+data[data == "N/A"] <- NA
+
 #=======
 # Tables
 
@@ -91,10 +94,15 @@ data %>%
             n = n())
 
 data %>%
+  mutate(prc_sugg_accepted = as.numeric(as.character(prc_sugg_accepted))) %>%
   group_by(condition) %>%
   summarise(mean_time = mean(time),
             mean_keys = mean(keystrokes),
+            mean_prc_sugg_acc = mean(prc_sugg_accepted, na.rm = TRUE),
             n = n())
+
+
+
 
 table(data$condition, data$`How difficult to translate was the source text?`)
 
@@ -241,7 +249,7 @@ domain_key_faceted
 # Boxplots for each text
 #
 
-texts_boxplots_time <- ggplot(data, aes(x = text_name, y = time, fill = as.factor(condition))) +
+texts_boxplots_time <- ggplot(data, aes(x = text_name, y = log(time + 1), fill = as.factor(condition))) +
   geom_boxplot(alpha = 0.7, outlier.size = 1) +
   facet_wrap(~ domain, scales = "free_x") + 
   
@@ -251,14 +259,31 @@ texts_boxplots_time <- ggplot(data, aes(x = text_name, y = time, fill = as.facto
   labs(title = "Time distribution divided by Document and Condition",
        subtitle = "(Medical vs News)",
        x = "Document (Text Name)",
-       y = "Time (Seconds)",
+       y = "log(Time + 1) (Seconds)",
        fill = "Condition") +
   
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "bottom",
         strip.background = element_rect(fill = "gray90"))
-
 print(texts_boxplots_time)
+
+texts_boxplots_keys <- ggplot(data, aes(x = text_name, y = log(keystrokes+1), fill = as.factor(condition))) +
+  geom_boxplot(alpha = 0.7, outlier.size = 1) +
+  facet_wrap(~ domain, scales = "free_x") + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Keystrokes distribution divided by Document and Condition",
+       subtitle = "(Medical vs News)",
+       x = "Document (Text Name)",
+       y = "log(Keystrokes + 1)",
+       fill = "Condition") +
+  
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom",
+        strip.background = element_rect(fill = "gray90"))
+print(texts_boxplots_keys)
 
 #
 # Stacked Bar Chart of Perceived Quality of MT
@@ -266,19 +291,26 @@ print(texts_boxplots_time)
 
 ggplot(data, aes(x = condition, fill = `How good was the quality of MT?`)) +
   geom_bar(position = "fill") +
-  scale_y_continuous(labels = scales::percent) +
+  scale_y_reverse(labels = scales::percent) +
+  scale_fill_manual(values = c(
+    "Insufficient" = "firebrick", 
+    "Fair"         = "#FFF176",  
+    "Good"         = "#81C784",  
+    "Very good"    = "navy"      
+  )) +
   theme_minimal() +
+  guides(fill = guide_legend(reverse = TRUE)) +
   labs(title = "Percieved Quality of MT per Condition",
        y = "Percentage", x = "Condition")
 
-table(data$text_name, data$condition)
-ggplot(data, aes(x = text_name, y = log(time), color = condition)) +
-  geom_boxplot() +
-  facet_wrap(~domain, scales = "free_x") +
+
+ggplot(data, aes(x = condition, fill = `How difficult to translate was the source text?`)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title = "Intra-text correlation check",
-       subtitle = "Ognuno di questi box rappresenta la correlazione che vogliamo gestire")
+  labs(title = "Percieved Difficulty of PE per Condition",
+       y = "Percentage", x = "Condition")
+
 
 #
 # Testing correlation between continuous variables and outcomes
@@ -286,10 +318,9 @@ ggplot(data, aes(x = text_name, y = log(time), color = condition)) +
 
 plot_data <- data %>%
   mutate(
-    log_time = log(time),
-    log_keystrokes = log(keystrokes),
+    log_time = log(time+1),
+    log_keystrokes = log(keystrokes+1),
     highlight_ratio = as.numeric(as.character(highlight_ratio)),
-    num_characters = as.numeric(as.character(num_characters)),
     condition = as.factor(condition)
   ) %>%
   filter(!is.na(highlight_ratio), !is.na(num_characters))
@@ -349,3 +380,24 @@ p14 <- ggplot(plot_data, aes(x = num_minor, y = log_keystrokes)) +
   theme_minimal() + labs(title = "Keystrokes vs Minor Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
 
 (p11 | p12) / (p13 | p14) + plot_layout(guides = 'collect')
+
+#
+# Percentage of suggestions accepted vs Keystrokes condition 4
+#
+
+data_plot <- data %>%
+  filter(condition == 4) %>%
+  mutate(
+    prc_sugg_accepted = as.numeric(as.character(prc_sugg_accepted))) %>%
+  filter(!is.na(prc_sugg_accepted))
+
+ggplot(data_plot, aes(x = prc_sugg_accepted, y = keystrokes)) +
+  geom_point(alpha = 0.6, color = "navy") +
+  geom_smooth(method = "lm", color = "firebrick", se = TRUE) + 
+  theme_minimal() +
+  labs(
+    title = "Percentage of Accepted Suggestions vs. Keystrokes",
+    subtitle = "Under Condition 4",
+    x = "% Suggestions Accepted",
+    y = "Number of Keystrokes"
+  )
