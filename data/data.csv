@@ -52,6 +52,7 @@ PET,TEXT,text_name,condition,domain,Sent_id,keystrokes,time,num_major,num_minor,
 1,Text 7,news_seattle_times.800119,4,news,6,20,27.343,0,1,193,0.0725,0.0,,Somewhat easy,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 7,news_seattle_times.800119,4,news,7,1,33.444,0,2,76,0.1842,50.0,"'MAX lijn,'",Somewhat easy,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 7,news_seattle_times.800119,4,news,8,16,93.137,0,1,265,0.0868,100.0,'medewerker van de media',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+1,Text 7,news_seattle_times.800119,4,news,1,0,0,0,0,51,0.0,100,,Somewhat easy,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 8,doc34,4,medical,1,9,35.765,1,0,122,0.041,100.0,'geen ',Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 8,doc34,4,medical,2,12,85.866,0,2,194,0.1134,50.0,'maagsonde',Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 8,doc34,4,medical,3,0,2.606,0,0,49,0.0,N/A,,Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
@@ -60,185 +61,192 @@ PET,TEXT,text_name,condition,domain,Sent_id,keystrokes,time,num_major,num_minor,
 1,Text 8,doc34,4,medical,6,37,39.659,0,2,116,0.069,100.0,'drinken.',Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 8,doc34,4,medical,7,65,88.246,0,1,204,0.0049,100.0,,Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
 1,Text 8,doc34,4,medical,8,13,17.58,0,3,162,0.3086,0.0,'gavagevoeding',Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-2,Text 1,news_scotsman.87462,2,news,1,8,11.436,0,0,51,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,2,0,14.052,0,0,104,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,3,41,50.556,0,0,300,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,4,11,13.575,0,0,86,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,5,102,50.009,0,0,190,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,6,7,37.14,0,0,193,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,7,66,29.426,0,0,76,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 1,news_scotsman.87462,2,news,8,116,97.634,0,0,265,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
-2,Text 2,doc18,2,medical,1,1,16.641,0,0,122,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,2,43,44.464999999999996,0,0,194,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,3,29,13.693,0,0,49,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,4,80,121.114,0,0,304,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,5,41,36.123,0,0,139,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,6,77,38.136,0,0,116,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,7,85,83.511,0,0,204,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 2,doc18,2,medical,8,55,57.768,0,0,162,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 3,news_seattle_times.799809,3,news,1,45,37.167,0,2,92,0.25,N/A,'goed in een keerpunt',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 3,news_seattle_times.799809,3,news,2,72,72.291,1,3,202,0.1337,N/A,'''; 'ondersch',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 3,news_seattle_times.799809,3,news,3,113,102.422,0,2,208,0.149,N/A,'fondsen impliceerde dat',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 3,news_seattle_times.799809,3,news,4,33,77.782,0,0,256,0.0,N/A,,Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 3,news_seattle_times.799809,3,news,5,69,61.467,0,2,223,0.0673,N/A,'bitcoinbe'; 'actief',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 3,news_seattle_times.799809,3,news,6,526,282.62,5,0,523,0.1472,N/A,'middel'; 'le marketing'; 'bekend waarde'; 'el en oplossingsarm'; 'naar Main Street Amerikanen',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,1,97,54.377,0,5,104,0.3077,N/A,'licht',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,2,44,37.503,0,1,174,0.0345,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,3,68,48.676,0,5,225,0.1822,N/A,'prothet'; 'basis',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,4,67,52.352,0,5,106,0.4717,N/A,'en'met''; ''zonder' co'; 'management voor'; 'at'; 'ische patiënten',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,5,160,104.341,0,4,287,0.1429,N/A,'meer verbeterd',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,6,172,100.786,8,0,229,0.5022,N/A,'Er werden significante verschillen gevonden'; 'tot belangrijkste diagnoses'; 'revisies',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,7,130,69.977,0,4,297,0.1987,N/A,'hogeriatrische co'; 'prothet'; 'prestaties bij overdracht',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 4,doc20,3,medical,8,88,49.738,0,2,168,0.1548,N/A,'medebeheer',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-2,Text 5,news_seattle_times.800119,4,news,1,440,299.395,0,2,111,0.2162,N/A,"'omworstelaars'; 'steak pies,'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 5,news_seattle_times.800119,4,news,2,111,105.08600000000003,0,5,206,0.1553,N/A,"'bakkers'; 'hoek,'; 'de'; 'tijd'; 'zal doorvoeren'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 5,news_seattle_times.800119,4,news,3,98,65.262,0,5,222,0.2883,N/A,'keten'; 'er’'; ' '; 'zijn''; 'de winkelketen een stabielere kostenbasis verwacht',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 5,news_seattle_times.800119,4,news,4,136,66.824,0,5,133,0.3609,N/A,"'winkels op een netto basis,'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 5,news_seattle_times.800119,4,news,5,181,141.885,0,2,118,0.1186,N/A,'op',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 5,news_seattle_times.800119,4,news,6,333,254.277,0,2,258,0.1938,N/A,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 5,news_seattle_times.800119,4,news,7,167,69.378,0,4,220,0.2727,N/A,'dat het een betaalbare'; 'aanbiedt'; 'belangrijk is dat'; 'intact blijft',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,1,74,88.598,1,1,195,0.0974,N/A,'De specificatie'; 'niet',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,2,107,105.29599999999999,0,0,198,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,3,215,182.063,0,7,467,0.2784,N/A,"'VPT-prematuren,'; 'gestational age < 32 weken'; '1500 g,'; 'er werd onderzoek gedaan naar'",Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,4,184,76.266,0,3,86,0.3256,N/A,'VPT-geboren'; 'termijncontroles.',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,5,83,55.688,0,5,162,0.2099,N/A,'zuigelingen'; 'VPT'; 'termijncontroles',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,6,40,51.053,0,2,94,0.4787,N/A,'geboortecomplicaties verklaarden',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 6,doc34,4,medical,7,173,125.552,0,4,117,0.4188,N/A,'voorspellend'; 'uitkomst werd meestal onderschat.',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
-2,Text 7,news_pa.5274,1,news,1,93,36.059,0,2,46,0.5217,0.0,'Geef'; 'WA opnieuw toezicht.',Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,2,134,60.728,0,2,82,0.4878,50.0,'kampt'; 'een crisis van overlijdensgevallen.',Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,3,146,93.96799999999999,0,1,295,0.0339,0.0,'wetgevende',Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,4,64,41.005,0,3,162,0.1543,33.33,'gevangenisdoden omkeren',Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,5,70,28.219,0,0,112,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,6,256,126.733,0,2,304,0.1118,50.0,'communiceren'; 'mensen worden verwond.',Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,7,387,159.58,0,5,303,0.1782,0.0,"'bureau'; 'toezicht op'; 'gevangenissen, op basis van gegevens.'",Somewhat easy,Good,nan,nan,nan,nan
-2,Text 7,news_pa.5274,1,news,8,199,91.34100000000001,0,0,275,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,1,2,7.605,0,0,81,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,2,92,37.221,0,3,102,0.1863,66.67,'is'; 'apparatuurkosten.',Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,3,43,55.943,0,1,128,0.1328,100.0,'kwaliteitsborging',Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,4,95,64.529,0,0,143,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,5,81,48.147999999999996,0,0,132,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,6,40,37.267,0,2,111,0.0811,100.0,'De'; 'sleutel',Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,7,59,43.31,0,4,95,0.3158,100.0,"'doen zich'; 'voor,'; 'praktijken'; 'armere'",Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,8,91,36.301,0,0,60,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,9,156,74.28699999999999,0,7,212,0.4292,14.29,"'Als'; 'EMPoCUS-vaardigheden onder de knie zijn,'; 'de'; 'behandelen'",Very difficult,Good,nan,nan,nan,nan
-2,Text 8,doc13,1,medical,10,217,126.15899999999999,0,0,293,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,1,62,29.822,0,0,46,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,2,0,0,0,0,82,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,3,30,78.137,0,0,295,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,4,55,89.205,0,0,162,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,5,11,41.883,0,0,112,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,6,72,99.26400000000001,0,0,304,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,7,89,87.614,0,0,303,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 1,news_seattle_times.799809,3,news,8,30,43.333,0,0,275,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 2,doc20,3,medical,1,77,85.19500000000001,0,0,81,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 2,doc20,3,medical,4,31,23.068,0,0,143,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 2,doc20,3,medical,6,16,25.926000000000002,0,0,111,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 2,doc20,3,medical,7,13,33.442,0,0,95,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 2,doc20,3,medical,9,32,61.866,0,0,212,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 2,doc20,3,medical,10,49,63.144999999999996,0,0,293,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-3,Text 3,news_seattle_times.800119,4,news,1,7,55.087,0,2,51,0.0784,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,2,1,14.135,1,0,104,0.5577,N/A,'reizigers is het vliegtuigmodel een doorslaggevende factor',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,3,36,61.947,1,3,300,0.08,N/A,'park',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,4,2,28.232,2,0,86,0.1047,N/A,'niet',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,5,40,78.081,1,1,190,0.1368,N/A,'vermelding is uitgebreid',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,6,47,56.529,0,2,193,0.2228,N/A,'percentage schadegevallen',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,7,9,45.296,2,1,76,0.1842,N/A,'MAX lijn'; 'ratio',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 3,news_seattle_times.800119,4,news,8,19,37.489,0,2,265,0.1245,N/A,'medewerker van de media',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-3,Text 4,doc34,4,medical,1,14,18.825,2,0,122,0.3115,N/A,'Kangoeroezorg is geen veilig',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,2,12,25.765,1,4,194,0.1907,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,3,11,6.9399999999999995,0,0,49,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,4,56,95.80799999999999,0,5,304,0.1053,N/A,'tional age',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,5,8,12.874,1,4,139,0.295,N/A,'tot',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,6,38,51.924,1,0,116,0.1983,N/A,'volledig konden drinken',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,7,6,27.474999999999998,0,4,204,0.1569,N/A,'Premature baby's'; ' ',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 4,doc34,4,medical,8,15,34.786,0,7,162,0.3086,N/A,'gavagevoeding',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-3,Text 5,news_pa.5274,1,news,1,22,68.667,0,2,92,0.2391,N/A,'keerpunt'; 'cryptovaluta's',Somewhat difficult,Fair,nan,nan,nan,nan
-3,Text 5,news_pa.5274,1,news,2,65,159.127,0,4,202,0.1238,N/A,"''We'; 'vandaag'; 'onderschreven','",Somewhat difficult,Fair,nan,nan,nan,nan
-3,Text 5,news_pa.5274,1,news,3,9,38.018,0,2,208,0.0673,N/A,' impliceerde',Somewhat difficult,Fair,nan,nan,nan,nan
-3,Text 5,news_pa.5274,1,news,4,37,38.254,0,0,256,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
-3,Text 5,news_pa.5274,1,news,5,45,61.821,0,2,223,0.0717,0.0,,Somewhat difficult,Fair,nan,nan,nan,nan
-3,Text 5,news_pa.5274,1,news,6,39,45.338,0,6,523,0.1338,N/A,''Met'; 'oplossingsarm',Somewhat difficult,Fair,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,1,48,40.013,0,2,104,0.2788,N/A,'In het licht van'; 'co-management',Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,2,16,57.123,0,1,174,0.0862,N/A,'traumapatiënten',Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,3,21,89.24199999999999,0,4,225,0.2178,N/A,,Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,4,44,37.518,0,3,106,0.3962,N/A,'voor geriatrische patiënten.',Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,5,24,61.28,0,4,287,0.0871,N/A,,Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,6,37,86.672,4,0,230,0.1174,N/A,' '; 'lengte'; 'de ziekenhuisopname',Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,7,49,36.388,0,3,297,0.1414,N/A,'Orthogeriatrische'; 'prestaties bij overdracht',Neutral,Good,nan,nan,nan,nan
-3,Text 6,doc13,1,medical,8,37,32.29,0,1,168,0.0595,N/A,'medebeheer',Neutral,Good,nan,nan,nan,nan
-3,Text 7,news_scotsman.87462,2,news,1,54,168.19899999999998,0,2,111,0.2162,0.0,"'omworstelaars'; 'steak pies,'",Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 7,news_scotsman.87462,2,news,2,57,95.618,0,5,206,0.1553,20.0,"'bakkers'; 'hoek,'; 'tijd'; 'zal doorvoeren'",Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 7,news_scotsman.87462,2,news,3,7,45.801,0,5,222,0.2883,0.0,,Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 7,news_scotsman.87462,2,news,4,69,48.284,0,5,133,0.3609,20.0,"'De'; '250-onderneming'; 'winkels op een netto basis,'; 'zijn'",Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 7,news_scotsman.87462,2,news,5,7,26.421,0,2,118,0.1186,50.0,'op',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 7,news_scotsman.87462,2,news,6,70,99.917,0,2,258,0.1938,50.0,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 7,news_scotsman.87462,2,news,7,12,49.464,0,4,220,0.2727,50.0,'belangrijk is dat'; 'intact blijft',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
-3,Text 8,doc18,2,medical,1,21,58.442,1,1,195,0.0974,50.0,'De specificatie'; 'niet',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-3,Text 8,doc18,2,medical,2,11,138.376,0,0,198,0.0,N/A,,Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-3,Text 8,doc18,2,medical,3,40,209.20099999999996,0,7,467,0.2784,42.86,"'VPT-prematuren,'; 'gestational age < 32 weken'; 'er werd onderzoek gedaan naar'; 'verwerkingscomposiet'; 'Kaufman-Assessment'",Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-3,Text 8,doc18,2,medical,4,91,122.503,0,3,86,0.3256,0.0,'VPT-geboren'; 'termijncontroles.',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-3,Text 8,doc18,2,medical,5,11,83.048,0,5,162,0.2099,60.0,'zuigelingen'; 'VPT'; 'termijncontroles',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-3,Text 8,doc18,2,medical,6,0,13.852,0,2,94,0.4787,0.0,,Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-3,Text 8,doc18,2,medical,7,0,0,0,4,117,0.4188,0.0,,Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
-4,Text 1,news_seattle_times.800119,4,news,1,141,79.31,0,0,111,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 1,news_seattle_times.800119,4,news,2,74,106.138,0,0,206,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 1,news_seattle_times.800119,4,news,3,9,62.416,0,0,222,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 1,news_seattle_times.800119,4,news,4,63,49.456,0,0,133,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 1,news_seattle_times.800119,4,news,5,37,45.767,0,0,118,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 1,news_seattle_times.800119,4,news,6,87,112.965,0,0,258,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 1,news_seattle_times.800119,4,news,7,85,78.92899999999999,0,0,220,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
-4,Text 2,doc34,4,medical,1,4,36.864,0,0,195,0.0,N/A,,Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
-4,Text 2,doc34,4,medical,2,28,52.023,0,0,198,0.0,N/A,,Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
-4,Text 2,doc34,4,medical,3,194,287.665,0,0,467,0.0,N/A,,Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
-4,Text 2,doc34,4,medical,4,91,42.616,0,0,86,0.0,N/A,,Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
-4,Text 2,doc34,4,medical,5,72,120.352,0,0,162,0.0,N/A,,Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
-4,Text 2,doc34,4,medical,7,17,34.246,0,0,117,0.0,N/A,,Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
-4,Text 3,news_pa.5274,1,news,1,43,14.281,0,1,46,0.087,N/A,'Geef',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,2,26,24.268,0,1,82,0.0732,N/A,'crisis',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,3,55,90.547,0,1,295,0.061,N/A,'gevende task force',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,4,48,47.001,0,4,162,0.0988,N/A,'en',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,5,11,5.048,0,0,112,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,6,114,110.80300000000001,0,2,304,0.0921,N/A,'communi'; 'mensen worden verwond',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,7,181,134.00300000000001,1,2,303,0.1584,N/A,'pleiten'; 'voor gevangenisdoden'; 'op basis van gegevens',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 3,news_pa.5274,1,news,8,44,80.512,0,2,275,0.0255,N/A,'her',Somewhat difficult,Good,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,1,130,116.68299999999999,0,2,81,0.1235,N/A,'Car',Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,2,43,57.309999999999995,0,2,102,0.1471,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,3,27,39.315,0,1,128,0.0625,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,5,36,12.586,0,0,132,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,6,29,24.568,0,1,111,0.1171,N/A,'tel uitdaging',Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,7,32,28.380999999999997,0,4,95,0.4,N/A,'medische praktijken'; 'armere',Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,8,13,16.051000000000002,0,2,60,0.3667,N/A,'c beeldvormende'; 'methode',Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,9,85,93.95499999999998,0,7,212,0.1226,N/A,'de EMPo'; 'de'; 'nood'; 'Po',Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 4,doc13,1,medical,10,54,50.347,0,6,293,0.1229,N/A,'behaal'; 'variabel'; 'controle',Very difficult,Insufficient,nan,nan,nan,nan
-4,Text 5,news_scotsman.87462,2,news,1,21,31.317000000000004,0,0,51,0.0,N/A,,Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,2,6,19.137,1,0,104,0.0288,N/A,'een',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,3,56,64.188,0,5,300,0.13,N/A,'geparkeerd',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,4,21,47.227,1,0,86,0.0581,N/A,' niet',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,5,38,38.812,0,6,190,0.2526,N/A,'is'; 'opgenomen'; 'uitgebreid'; 'staat dit vermeld',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,6,39,51.622,0,1,193,0.0725,N/A,'schadegevallen',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,7,41,16.327,0,2,76,0.1842,N/A,"'MAX lijn,'; 'ratio'",Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 5,news_scotsman.87462,2,news,8,59,70.231,0,1,265,0.0868,N/A,'medewerker van de media',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,1,18,35.817,1,0,122,0.041,N/A,'geen ',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,2,23,29.463,0,2,194,0.1134,N/A,'kangoeroezorg'; 'maagsonde',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,4,50,55.483999999999995,0,7,304,0.2467,N/A,'werden'; 'gestational age'; 'weken opgenomen. Hun'; 'werden in'; 'studie opgenomen.',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,5,49,38.199,0,1,139,0.1007,N/A,"'kangoeroezorg,'",Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,6,58,35.12500000000001,0,2,116,0.069,N/A,'drinken.',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,7,36,70.047,0,1,204,0.0049,N/A,' ',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 6,doc18,2,medical,8,13,16.92,0,3,162,0.3086,N/A,'gavagevoeding'; 'kangoeroezorggroep'; 'standaardzorggroep.',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
-4,Text 7,news_seattle_times.799809,3,news,1,1,13.26,0,2,92,0.2391,50.0,'keerpunt',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 7,news_seattle_times.799809,3,news,2,9,37.512,0,4,202,0.1238,25.0,"''We'; 'onderschreven','",Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 7,news_seattle_times.799809,3,news,3,43,92.469,0,2,208,0.0673,50.0,' impliceerde',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 7,news_seattle_times.799809,3,news,4,6,19.619,0,0,256,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 7,news_seattle_times.799809,3,news,5,16,64.635,0,2,223,0.0717,50.0,'bitcoinbeleggers',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 7,news_seattle_times.799809,3,news,6,230,240.484,0,6,523,0.1338,100.0,"''Met'; 'investeringsmiddel'; 'oplossingsarm'; 'naar'; 'Amerikanen mogelijk zal maken','",Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,1,16,29.916,0,2,104,0.2788,100.0,'In het licht van',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,2,1,8.759,0,1,174,0.0862,100.0,'traumapatiënten',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,3,51,105.144,0,4,225,0.2178,100.0,'het onderzoeken van'; 'belangrijke gebieden.',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,4,11,43.31699999999999,0,3,106,0.3962,100.0,'patiënten'met''; 'voor geriatrische patiënten.',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,5,43,50.367000000000004,0,4,287,0.0871,100.0,'duidelijk meer'; 'gemeld',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,6,51,94.723,4,0,231,0.1169,75.0,' '; 'lengte',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,7,24,58.11300000000001,0,3,297,0.1414,100.0,'Orthogeriatrische'; 'prestaties bij overdracht',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
-4,Text 8,doc20,3,medical,8,25,21.503999999999998,0,1,168,0.0595,0.0,'medebeheer',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,1,8,11.436,0,0,51,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,2,0,14.052,0,0,104,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,3,41,50.556,0,0,300,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,4,11,13.575,0,0,86,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,5,102,50.009,0,0,190,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,6,7,37.14,0,0,193,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,7,66,29.426,0,0,76,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 1,news_seattle_times.800119,1,news,8,116,97.634,0,0,265,0.0,N/A,,Somewhat easy,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,1,1,16.641,0,0,122,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,2,43,44.464999999999996,0,0,194,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,3,29,13.693,0,0,49,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,4,80,121.114,0,0,304,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,5,41,36.123,0,0,139,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,6,77,38.136,0,0,116,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,7,85,83.511,0,0,204,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 2,doc34,1,medical,8,55,57.768,0,0,162,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+2,Text 3,news_pa.5274,2,news,1,45,37.167,0,2,92,0.25,N/A,'goed in een keerpunt',Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
+2,Text 3,news_pa.5274,2,news,2,72,72.291,1,3,202,0.1337,N/A,'''; 'ondersch',Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
+2,Text 3,news_pa.5274,2,news,3,113,102.422,0,2,208,0.149,N/A,'fondsen impliceerde dat',Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
+2,Text 3,news_pa.5274,2,news,4,33,77.782,0,0,256,0.0,N/A,,Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
+2,Text 3,news_pa.5274,2,news,5,69,61.467,0,2,223,0.0673,N/A,'bitcoinbe'; 'actief',Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
+2,Text 3,news_pa.5274,2,news,6,526,282.62,5,0,523,0.1472,N/A,'middel'; 'le marketing'; 'bekend waarde'; 'el en oplossingsarm'; 'naar Main Street Amerikanen',Somewhat difficult,Fair,Neutral,Not accurate nor inaccurate,nan,nan
+2,Text 4,doc13,2,medical,1,97,54.377,0,5,104,0.3077,N/A,'licht',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,2,44,37.503,0,1,174,0.0345,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,3,68,48.676,0,5,225,0.1822,N/A,'prothet'; 'basis',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,4,67,52.352,0,5,106,0.4717,N/A,'en'met''; ''zonder' co'; 'management voor'; 'at'; 'ische patiënten',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,5,160,104.341,0,4,287,0.1429,N/A,'meer verbeterd',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,6,172,100.786,8,0,229,0.5022,N/A,'Er werden significante verschillen gevonden'; 'tot belangrijkste diagnoses'; 'revisies',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,7,130,69.977,0,4,297,0.1987,N/A,'hogeriatrische co'; 'prothet'; 'prestaties bij overdracht',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 4,doc13,2,medical,8,88,49.738,0,2,168,0.1548,N/A,'medebeheer',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,1,440,299.395,0,2,111,0.2162,N/A,"'omworstelaars'; 'steak pies,'",Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,2,111,105.08600000000003,0,5,206,0.1553,N/A,"'bakkers'; 'hoek,'; 'de'; 'tijd'; 'zal doorvoeren'",Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,3,98,65.262,0,5,222,0.2883,N/A,'keten'; 'er’'; ' '; 'zijn''; 'de winkelketen een stabielere kostenbasis verwacht',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,4,136,66.824,0,5,133,0.3609,N/A,"'winkels op een netto basis,'",Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,5,181,141.885,0,2,118,0.1186,N/A,'op',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,6,333,254.277,0,2,258,0.1938,N/A,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 5,news_scotsman.87462,3,news,7,167,69.378,0,4,220,0.2727,N/A,'dat het een betaalbare'; 'aanbiedt'; 'belangrijk is dat'; 'intact blijft',Somewhat difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,1,74,88.598,1,1,195,0.0974,N/A,'De specificatie'; 'niet',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,2,107,105.29599999999999,0,0,198,0.0,N/A,,Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,3,215,182.063,0,7,467,0.2784,N/A,"'VPT-prematuren,'; 'gestational age < 32 weken'; '1500 g,'; 'er werd onderzoek gedaan naar'",Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,4,184,76.266,0,3,86,0.3256,N/A,'VPT-geboren'; 'termijncontroles.',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,5,83,55.688,0,5,162,0.2099,N/A,'zuigelingen'; 'VPT'; 'termijncontroles',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,6,40,51.053,0,2,94,0.4787,N/A,'geboortecomplicaties verklaarden',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 6,doc18,3,medical,7,173,125.552,0,4,117,0.4188,N/A,'voorspellend'; 'uitkomst werd meestal onderschat.',Very difficult,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+2,Text 7,news_seattle_times.799809,4,news,1,93,36.059,0,2,46,0.5217,0.0,'Geef'; 'WA opnieuw toezicht.',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,2,134,60.728,0,2,82,0.4878,50.0,'kampt'; 'een crisis van overlijdensgevallen.',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,3,146,93.96799999999999,0,1,295,0.0339,0.0,'wetgevende',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,4,64,41.005,0,3,162,0.1543,33.33,'gevangenisdoden omkeren',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,5,70,28.219,0,0,112,0.0,N/A,,Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,6,256,126.733,0,2,304,0.1118,50.0,'communiceren'; 'mensen worden verwond.',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,7,387,159.58,0,5,303,0.1782,0.0,"'bureau'; 'toezicht op'; 'gevangenissen, op basis van gegevens.'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 7,news_seattle_times.799809,4,news,8,199,91.34100000000001,0,0,275,0.0,N/A,,Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,1,2,7.605,0,0,81,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,2,92,37.221,0,3,102,0.1863,66.67,'is'; 'apparatuurkosten.',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,3,43,55.943,0,1,128,0.1328,100.0,'kwaliteitsborging',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,4,95,64.529,0,0,143,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,5,81,48.147999999999996,0,0,132,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,6,40,37.267,0,2,111,0.0811,100.0,'De'; 'sleutel',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,7,59,43.31,0,4,95,0.3158,100.0,"'doen zich'; 'voor,'; 'praktijken'; 'armere'",Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,8,91,36.301,0,0,60,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,9,156,74.28699999999999,0,7,212,0.4292,14.29,"'Als'; 'EMPoCUS-vaardigheden onder de knie zijn,'; 'de'; 'behandelen'",Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+2,Text 8,doc20,4,medical,10,217,126.15899999999999,0,0,293,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,Somewhat useful,Somewhat accurate
+3,Text 1,news_seattle_times.799809,1,news,1,62,29.822,0,0,46,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,2,0,0,0,0,82,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,3,30,78.137,0,0,295,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,4,55,89.205,0,0,162,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,5,11,41.883,0,0,112,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,6,72,99.26400000000001,0,0,304,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,7,89,87.614,0,0,303,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 1,news_seattle_times.799809,1,news,8,30,43.333,0,0,275,0.0,N/A,,Somewhat difficult,Fair,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,1,77,85.19500000000001,0,0,81,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,4,31,23.068,0,0,143,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,6,16,25.926000000000002,0,0,111,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,7,13,33.442,0,0,95,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,9,32,61.866,0,0,212,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,10,49,63.144999999999996,0,0,293,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,2,0,0,0,0,102,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,3,0,0,0,0,128,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,5,0,0,0,0,132,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 2,doc20,1,medical,8,0,0,0,0,60,0.0,N/A,,Neutral,Good,nan,nan,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,1,7,55.087,0,2,51,0.0784,N/A,,Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,2,1,14.135,1,0,104,0.5577,N/A,'reizigers is het vliegtuigmodel een doorslaggevende factor',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,3,36,61.947,1,3,300,0.08,N/A,'park',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,4,2,28.232,2,0,86,0.1047,N/A,'niet',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,5,40,78.081,1,1,190,0.1368,N/A,'vermelding is uitgebreid',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,6,47,56.529,0,2,193,0.2228,N/A,'percentage schadegevallen',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,7,9,45.296,2,1,76,0.1842,N/A,'MAX lijn'; 'ratio',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 3,news_seattle_times.800119,2,news,8,19,37.489,0,2,265,0.1245,N/A,'medewerker van de media',Somewhat difficult,Fair,Neutral,Somewhat accurate,nan,nan
+3,Text 4,doc34,2,medical,1,14,18.825,2,0,122,0.3115,N/A,'Kangoeroezorg is geen veilig',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,2,12,25.765,1,4,194,0.1907,N/A,,Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,3,11,6.9399999999999995,0,0,49,0.0,N/A,,Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,4,56,95.80799999999999,0,5,304,0.1053,N/A,'tional age',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,5,8,12.874,1,4,139,0.295,N/A,'tot',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,6,38,51.924,1,0,116,0.1983,N/A,'volledig konden drinken',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,7,6,27.474999999999998,0,4,204,0.1569,N/A,'Premature baby's'; ' ',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 4,doc34,2,medical,8,15,34.786,0,7,162,0.3086,N/A,'gavagevoeding',Somewhat easy,Good,Somewhat useful,Not accurate nor inaccurate,nan,nan
+3,Text 5,news_pa.5274,3,news,1,22,68.667,0,2,92,0.2391,N/A,'keerpunt'; 'cryptovaluta's',Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 5,news_pa.5274,3,news,2,65,159.127,0,4,202,0.1238,N/A,"''We'; 'vandaag'; 'onderschreven','",Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 5,news_pa.5274,3,news,3,9,38.018,0,2,208,0.0673,N/A,' impliceerde',Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 5,news_pa.5274,3,news,4,37,38.254,0,0,256,0.0,N/A,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 5,news_pa.5274,3,news,5,45,61.821,0,2,223,0.0717,0.0,,Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 5,news_pa.5274,3,news,6,39,45.338,0,6,523,0.1338,N/A,''Met'; 'oplossingsarm',Somewhat difficult,Fair,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,1,48,40.013,0,2,104,0.2788,N/A,'In het licht van'; 'co-management',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,2,16,57.123,0,1,174,0.0862,N/A,'traumapatiënten',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,3,21,89.24199999999999,0,4,225,0.2178,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,4,44,37.518,0,3,106,0.3962,N/A,'voor geriatrische patiënten.',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,5,24,61.28,0,4,287,0.0871,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,6,37,86.672,4,0,230,0.1174,N/A,' '; 'lengte'; 'de ziekenhuisopname',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,7,49,36.388,0,3,297,0.1414,N/A,'Orthogeriatrische'; 'prestaties bij overdracht',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 6,doc13,3,medical,8,37,32.29,0,1,168,0.0595,N/A,'medebeheer',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+3,Text 7,news_scotsman.87462,4,news,1,54,168.19899999999998,0,2,111,0.2162,0.0,"'omworstelaars'; 'steak pies,'",Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 7,news_scotsman.87462,4,news,2,57,95.618,0,5,206,0.1553,20.0,"'bakkers'; 'hoek,'; 'tijd'; 'zal doorvoeren'",Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 7,news_scotsman.87462,4,news,3,7,45.801,0,5,222,0.2883,0.0,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 7,news_scotsman.87462,4,news,4,69,48.284,0,5,133,0.3609,20.0,"'De'; '250-onderneming'; 'winkels op een netto basis,'; 'zijn'",Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 7,news_scotsman.87462,4,news,5,7,26.421,0,2,118,0.1186,50.0,'op',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 7,news_scotsman.87462,4,news,6,70,99.917,0,2,258,0.1938,50.0,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 7,news_scotsman.87462,4,news,7,12,49.464,0,4,220,0.2727,50.0,'belangrijk is dat'; 'intact blijft',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+3,Text 8,doc18,4,medical,1,21,58.442,1,1,195,0.0974,50.0,'De specificatie'; 'niet',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+3,Text 8,doc18,4,medical,2,11,138.376,0,0,198,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+3,Text 8,doc18,4,medical,3,40,209.20099999999996,0,7,467,0.2784,42.86,"'VPT-prematuren,'; 'gestational age < 32 weken'; 'er werd onderzoek gedaan naar'; 'verwerkingscomposiet'; 'Kaufman-Assessment'",Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+3,Text 8,doc18,4,medical,4,91,122.503,0,3,86,0.3256,0.0,'VPT-geboren'; 'termijncontroles.',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+3,Text 8,doc18,4,medical,5,11,83.048,0,5,162,0.2099,60.0,'zuigelingen'; 'VPT'; 'termijncontroles',Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+3,Text 8,doc18,4,medical,6,0,13.852,0,2,94,0.4787,0.0,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+3,Text 8,doc18,4,medical,7,0,0,0,4,117,0.4188,0.0,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
+4,Text 1,news_scotsman.87462,1,news,1,141,79.31,0,0,111,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 1,news_scotsman.87462,1,news,2,74,106.138,0,0,206,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 1,news_scotsman.87462,1,news,3,9,62.416,0,0,222,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 1,news_scotsman.87462,1,news,4,63,49.456,0,0,133,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 1,news_scotsman.87462,1,news,5,37,45.767,0,0,118,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 1,news_scotsman.87462,1,news,6,87,112.965,0,0,258,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 1,news_scotsman.87462,1,news,7,85,78.92899999999999,0,0,220,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,1,4,36.864,0,0,195,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,2,28,52.023,0,0,198,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,3,194,287.665,0,0,467,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,4,91,42.616,0,0,86,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,5,72,120.352,0,0,162,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,7,17,34.246,0,0,117,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 2,doc18,1,medical,6,0,0,0,0,94,0.0,N/A,,Very difficult,Insufficient,nan,nan,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,1,43,14.281,0,1,46,0.087,N/A,'Geef',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,2,26,24.268,0,1,82,0.0732,N/A,'crisis',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,3,55,90.547,0,1,295,0.061,N/A,'gevende task force',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,4,48,47.001,0,4,162,0.0988,N/A,'en',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,5,11,5.048,0,0,112,0.0,N/A,,Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,6,114,110.80300000000001,0,2,304,0.0921,N/A,'communi'; 'mensen worden verwond',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,7,181,134.00300000000001,1,2,303,0.1584,N/A,'pleiten'; 'voor gevangenisdoden'; 'op basis van gegevens',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 3,news_seattle_times.799809,2,news,8,44,80.512,0,2,275,0.0255,N/A,'her',Neutral,Very good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,1,130,116.68299999999999,0,2,81,0.1235,N/A,'Car',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,2,43,57.309999999999995,0,2,102,0.1471,N/A,,Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,3,27,39.315,0,1,128,0.0625,N/A,,Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,5,36,12.586,0,0,132,0.0,N/A,,Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,6,29,24.568,0,1,111,0.1171,N/A,'tel uitdaging',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,7,32,28.380999999999997,0,4,95,0.4,N/A,'medische praktijken'; 'armere',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,8,13,16.051000000000002,0,2,60,0.3667,N/A,'c beeldvormende'; 'methode',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,9,85,93.95499999999998,0,7,212,0.1226,N/A,'de EMPo'; 'de'; 'nood'; 'Po',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,10,54,50.347,0,6,293,0.1229,N/A,'behaal'; 'variabel'; 'controle',Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 4,doc20,2,medical,4,0,0,0,0,143,0.0,N/A,,Neutral,Good,Extremely not useful,Somewhat inaccurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,1,21,31.317000000000004,0,0,51,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,2,6,19.137,1,0,104,0.0288,N/A,'een',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,3,56,64.188,0,5,300,0.13,N/A,'geparkeerd',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,4,21,47.227,1,0,86,0.0581,N/A,' niet',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,5,38,38.812,0,6,190,0.2526,N/A,'is'; 'opgenomen'; 'uitgebreid'; 'staat dit vermeld',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,6,39,51.622,0,1,193,0.0725,N/A,'schadegevallen',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,7,41,16.327,0,2,76,0.1842,N/A,"'MAX lijn,'; 'ratio'",Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 5,news_seattle_times.800119,3,news,8,59,70.231,0,1,265,0.0868,N/A,'medewerker van de media',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,1,18,35.817,1,0,122,0.041,N/A,'geen ',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,2,23,29.463,0,2,194,0.1134,N/A,'kangoeroezorg'; 'maagsonde',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,4,50,55.483999999999995,0,7,304,0.2467,N/A,'werden'; 'gestational age'; 'weken opgenomen. Hun'; 'werden in'; 'studie opgenomen.',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,5,49,38.199,0,1,139,0.1007,N/A,"'kangoeroezorg,'",Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,6,58,35.12500000000001,0,2,116,0.069,N/A,'drinken.',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,7,36,70.047,0,1,204,0.0049,N/A,' ',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,8,13,16.92,0,3,162,0.3086,N/A,'gavagevoeding'; 'kangoeroezorggroep'; 'standaardzorggroep.',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 6,doc34,3,medical,3,0,0,0,0,49,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,nan,nan
+4,Text 7,news_pa.5274,4,news,1,1,13.26,0,2,92,0.2391,50.0,'keerpunt',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
+4,Text 7,news_pa.5274,4,news,2,9,37.512,0,4,202,0.1238,25.0,"''We'; 'onderschreven','",Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
+4,Text 7,news_pa.5274,4,news,3,43,92.469,0,2,208,0.0673,50.0,' impliceerde',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
+4,Text 7,news_pa.5274,4,news,4,6,19.619,0,0,256,0.0,N/A,,Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
+4,Text 7,news_pa.5274,4,news,5,16,64.635,0,2,223,0.0717,50.0,'bitcoinbeleggers',Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
+4,Text 7,news_pa.5274,4,news,6,230,240.484,0,6,523,0.1338,100.0,"''Met'; 'investeringsmiddel'; 'oplossingsarm'; 'naar'; 'Amerikanen mogelijk zal maken','",Somewhat easy,Very good,Somewhat useful,Somewhat accurate,Somewhat useful,Very accurate
+4,Text 8,doc13,4,medical,1,16,29.916,0,2,104,0.2788,100.0,'In het licht van',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,2,1,8.759,0,1,174,0.0862,100.0,'traumapatiënten',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,3,51,105.144,0,4,225,0.2178,100.0,'het onderzoeken van'; 'belangrijke gebieden.',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,4,11,43.31699999999999,0,3,106,0.3962,100.0,'patiënten'met''; 'voor geriatrische patiënten.',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,5,43,50.367000000000004,0,4,287,0.0871,100.0,'duidelijk meer'; 'gemeld',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,6,51,94.723,4,0,231,0.1169,75.0,' '; 'lengte',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,7,24,58.11300000000001,0,3,297,0.1414,100.0,'Orthogeriatrische'; 'prestaties bij overdracht',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
+4,Text 8,doc13,4,medical,8,25,21.503999999999998,0,1,168,0.0595,0.0,'medebeheer',Neutral,Very good,Somewhat useful,Somewhat accurate,Extremely useful,Very accurate
 5,Text 1,news_pa.5274,1,news,1,0,15.671,0,0,92,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
 5,Text 1,news_pa.5274,1,news,2,33,83.62199999999999,0,0,202,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
 5,Text 1,news_pa.5274,1,news,3,21,95.05199999999999,0,0,208,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
@@ -301,183 +309,189 @@ PET,TEXT,text_name,condition,domain,Sent_id,keystrokes,time,num_major,num_minor,
 5,Text 8,doc34,4,medical,6,19,24.15,0,2,116,0.069,0.0,'drinken.',Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
 5,Text 8,doc34,4,medical,7,13,23.222,0,1,204,0.0049,100.0,,Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
 5,Text 8,doc34,4,medical,8,5,35.544,0,3,162,0.3086,0.0,'gavagevoeding',Neutral,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Not accurate nor inaccurate
-6,Text 1,news_scotsman.87462,2,news,1,19,96.955,0,0,51,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,2,6,10.48,0,0,104,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,3,87,173.87599999999998,0,0,300,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,4,0,220.279,0,0,86,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,5,61,125.233,0,0,190,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,6,50,282.62899999999996,0,0,193,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,7,7,44.756,0,0,76,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 1,news_scotsman.87462,2,news,8,91,206.39,0,0,265,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 2,doc18,2,medical,2,34,56.137,0,0,194,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 2,doc18,2,medical,3,11,72.434,0,0,49,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 2,doc18,2,medical,4,68,147.198,0,0,304,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 2,doc18,2,medical,5,6,79.341,0,0,139,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 2,doc18,2,medical,6,106,217.13400000000001,0,0,116,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 2,doc18,2,medical,7,15,37.656,0,0,204,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 2,doc18,2,medical,8,29,70.851,0,0,162,0.0,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-6,Text 3,news_seattle_times.799809,3,news,1,30,145.88,0,2,92,0.25,N/A,,Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 3,news_seattle_times.799809,3,news,2,61,309.548,1,3,202,0.1337,N/A,'''; 'ondersch',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 3,news_seattle_times.799809,3,news,3,28,76.01299999999999,0,2,208,0.149,N/A,'fondsen impliceerde dat',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 3,news_seattle_times.799809,3,news,4,38,99.685,0,0,256,0.0,N/A,,Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 3,news_seattle_times.799809,3,news,5,28,110.906,0,2,223,0.0673,N/A,'actief',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 3,news_seattle_times.799809,3,news,6,88,366.037,5,0,523,0.1472,N/A,'le marketing',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,1,0,0,0,5,104,0.3077,N/A,,Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,2,5,12.031,0,1,174,0.0345,N/A,'trauma',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,3,30,63.556,0,5,225,0.1822,N/A,,Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,4,24,116.33900000000001,0,5,106,0.4717,N/A,'en'met''; ''zonder' co'; 'management voor'; 'at'; 'ische patiënten',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,5,7,49.677,0,4,287,0.1429,N/A,'overbrengbaarheid'; 'meer verbeterd',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,6,13,80.461,8,0,229,0.5022,N/A,'Er werden significante verschillen gevonden'; 'tot belangrijkste diagnoses',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,7,1,313.029,0,4,297,0.1987,N/A,'hogeriatrische co',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 4,doc20,3,medical,8,14,20.749000000000002,0,2,168,0.1548,N/A,'medebeheer',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
-6,Text 5,news_seattle_times.800119,4,news,1,77,116.739,0,2,111,0.2162,N/A,"'omworstelaars'; 'steak pies,'",Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 5,news_seattle_times.800119,4,news,2,46,93.78699999999999,0,5,206,0.1553,N/A,"'bakkers'; 'hoek,'",Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 5,news_seattle_times.800119,4,news,3,54,137.362,0,5,222,0.2883,N/A,'keten'; 'er’'; ' '; 'zijn''; 'de winkelketen een stabielere kostenbasis verwacht',Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 5,news_seattle_times.800119,4,news,4,56,74.235,0,5,133,0.3609,N/A,"'De'; '250-onderneming'; 'winkels op een netto basis,'",Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 5,news_seattle_times.800119,4,news,5,30,75.071,0,2,118,0.1186,N/A,'op',Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 5,news_seattle_times.800119,4,news,6,148,268.333,0,2,258,0.1938,N/A,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 5,news_seattle_times.800119,4,news,7,51,187.881,0,4,220,0.2727,N/A,'dat het een betaalbare'; 'aanbiedt'; 'intact blijft',Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
-6,Text 6,doc34,4,medical,1,64,134.622,1,1,195,0.0974,N/A,'De specificatie'; 'niet',Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 6,doc34,4,medical,2,64,151.983,0,0,198,0.0,N/A,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 6,doc34,4,medical,3,68,308.19,0,7,467,0.2784,N/A,"'VPT-prematuren,'; 'gestational age < 32 weken'; 'er werd onderzoek gedaan naar'",Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 6,doc34,4,medical,4,56,135.14499999999998,0,3,86,0.3256,N/A,'VPT-geboren'; 'termijncontroles.',Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 6,doc34,4,medical,5,43,63.35,0,5,162,0.2099,N/A,'zuigelingen'; 'termijncontroles'; 'SES.',Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 6,doc34,4,medical,6,0,0,0,2,94,0.4787,N/A,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 6,doc34,4,medical,7,20,26.721,0,4,117,0.4188,N/A,'uitkomst werd meestal onderschat.',Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
-6,Text 7,news_pa.5274,1,news,1,55,91.184,0,2,46,0.5217,0.0,'Geef'; 'WA opnieuw toezicht.',Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,2,8,154.84199999999998,0,2,82,0.4878,0.0,,Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,3,10,93.47300000000001,0,1,295,0.0339,0.0,,Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,4,29,22.947,0,3,162,0.1543,0.0,'De'; 'gevangenisdoden omkeren',Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,5,27,148.119,0,0,112,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,6,39,104.265,0,2,304,0.1118,0.0,'communiceren'; 'mensen worden verwond.',Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,7,69,259.972,0,5,303,0.1782,80.0,"'bureau'; 'toezicht op'; 'gevangenissen, op basis van gegevens.'",Very easy,Fair,nan,nan,nan,nan
-6,Text 7,news_pa.5274,1,news,8,55,128.107,0,0,275,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,2,4,50.419,0,3,102,0.1863,100.0,'is'; 'apparatuurkosten.',Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,3,0,48.958,0,1,128,0.1328,0.0,,Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,4,13,44.82,0,0,143,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,5,72,87.228,0,0,132,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,6,3,54.626,0,2,111,0.0811,100.0,'De'; 'sleutel',Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,7,48,51.467,0,4,95,0.3158,50.0,"'doen zich'; 'voor,'; 'praktijken'",Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,8,21,46.221,0,0,60,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,9,56,121.148,0,7,212,0.4292,85.71,"'Als'; 'EMPoCUS-vaardigheden onder de knie zijn,'; 'de'; 'hun patiënten'; 'behandelen'; 'een verscheidenheid aan'",Very easy,Good,nan,nan,nan,nan
-6,Text 8,doc13,1,medical,10,15,58.985,0,0,293,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,1,47,115.66900000000001,0,0,46,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,2,22,165.37,0,0,82,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,3,64,144.02800000000002,0,0,295,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,4,62,79.751,0,0,162,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,5,20,66.50900000000001,0,0,112,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,6,86,254.814,0,0,304,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,7,51,156.51600000000002,0,0,303,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 1,news_seattle_times.799809,3,news,8,12,107.106,0,0,275,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
-7,Text 2,doc20,3,medical,2,44,137.674,0,0,102,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,3,42,95.058,0,0,128,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,4,0,17.224,0,0,143,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,5,61,131.954,0,0,132,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,6,35,37.674,0,0,111,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,7,34,93.757,0,0,95,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,8,81,194.98600000000002,0,0,60,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,9,74,206.515,0,0,212,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 2,doc20,3,medical,10,96,276.15500000000003,0,0,293,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
-7,Text 3,news_seattle_times.800119,4,news,1,15,68.162,0,2,51,0.0784,N/A,'na'; 'in',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,2,1,23.089,1,0,104,0.5577,N/A,'reizigers is het vliegtuigmodel een doorslaggevende factor',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,3,83,158.81,1,3,300,0.08,N/A,'park'; 'zullen',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,4,12,64.713,2,0,86,0.1047,N/A,'wordt'; 'niet',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,5,77,147.17,1,1,190,0.1368,N/A,'vermelding is uitgebreid',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,6,38,152.367,0,2,193,0.2228,N/A,'percentage schadegevallen',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,7,43,73.761,2,1,76,0.1842,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 3,news_seattle_times.800119,4,news,8,37,68.583,0,2,265,0.1245,N/A,'medewerker van de media',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,1,1,21.046,2,0,122,0.3115,N/A,'Kangoeroezorg is geen veilig',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,2,0,30.106,1,4,194,0.1907,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,3,0,3.024,0,0,49,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,4,75,197.93099999999998,0,5,304,0.1053,N/A,'tional age'; 'opgenomen',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,5,0,0,1,4,139,0.295,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,6,58,91.328,1,0,116,0.1983,N/A,'volledig konden drinken',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,7,17,27.576,0,4,204,0.1569,N/A,'Premature baby's',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 4,doc34,4,medical,8,5,39.313,0,7,162,0.3086,N/A,'gavagevoeding',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
-7,Text 5,news_pa.5274,1,news,1,41,87.101,0,2,92,0.2391,N/A,,Neutral,Fair,nan,nan,nan,nan
-7,Text 5,news_pa.5274,1,news,2,7,46.012,0,4,202,0.1238,N/A,''We',Neutral,Fair,nan,nan,nan,nan
-7,Text 5,news_pa.5274,1,news,3,8,56.925,0,2,208,0.0673,N/A,' impliceerde',Neutral,Fair,nan,nan,nan,nan
-7,Text 5,news_pa.5274,1,news,4,19,104.66300000000001,0,0,256,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
-7,Text 5,news_pa.5274,1,news,5,28,177.359,0,2,223,0.0717,0.0,'bitcoinbeleggers',Neutral,Fair,nan,nan,nan,nan
-7,Text 5,news_pa.5274,1,news,6,152,327.42199999999997,0,6,523,0.1338,N/A,"''Met'; 'investeringsmiddel'; 'naar'; 'Amerikanen mogelijk zal maken','",Neutral,Fair,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,1,0,0,0,2,104,0.2788,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,2,7,23.895,0,1,174,0.0862,N/A,'traumapatiënten',Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,3,130,217.914,0,4,225,0.2178,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,4,5,142.33800000000002,0,3,106,0.3962,N/A,'patiënten'met''; 'voor geriatrische patiënten.',Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,5,6,43.759,0,4,287,0.0871,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,6,44,202.513,4,0,230,0.1174,N/A,' '; 'lengte'; 'de ziekenhuisopname',Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,7,18,74.572,0,3,297,0.1414,N/A,'Orthogeriatrische'; 'prestaties bij overdracht',Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 6,doc13,1,medical,8,35,150.85000000000002,0,1,168,0.0595,N/A,'medebeheer',Somewhat difficult,Good,nan,nan,nan,nan
-7,Text 7,news_scotsman.87462,2,news,1,87,104.95100000000001,0,2,111,0.2162,0.0,"'omworstelaars'; 'steak pies,'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 7,news_scotsman.87462,2,news,2,96,122.881,0,5,206,0.1553,0.0,"'bakkers'; 'hoek,'; 'de'; 'tijd'; 'zal doorvoeren'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 7,news_scotsman.87462,2,news,3,159,199.915,0,5,222,0.2883,100.0,'er’'; ' '; 'zijn''; 'de winkelketen een stabielere kostenbasis verwacht',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 7,news_scotsman.87462,2,news,4,131,164.27200000000002,0,5,133,0.3609,60.0,"'De'; '250-onderneming'; 'winkels op een netto basis,'; 'zijn'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 7,news_scotsman.87462,2,news,5,56,83.773,0,2,118,0.1186,0.0,'op'; 'reislocaties',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 7,news_scotsman.87462,2,news,6,110,199.99699999999999,0,2,258,0.1938,0.0,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 7,news_scotsman.87462,2,news,7,69,106.394,0,4,220,0.2727,25.0,'aanbiedt'; 'belangrijk is dat'; 'intact blijft',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-7,Text 8,doc18,2,medical,1,27,93.237,1,1,195,0.0974,50.0,'De specificatie'; 'niet',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-7,Text 8,doc18,2,medical,2,45,102.889,0,0,198,0.0,N/A,,Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-7,Text 8,doc18,2,medical,3,243,448.907,0,7,467,0.2784,0.0,"'VPT-prematuren,'; 'gestational age < 32 weken'; 'er werd onderzoek gedaan naar'; 'verwerkingscomposiet'; 'Kaufman-Assessment'",Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-7,Text 8,doc18,2,medical,4,64,145.695,0,3,86,0.3256,33.33,'VPT-geboren'; 'termijncontroles.',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-7,Text 8,doc18,2,medical,5,44,146.725,0,5,162,0.2099,40.0,'zuigelingen'; 'VPT'; 'termijncontroles',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-7,Text 8,doc18,2,medical,6,0,38.348,0,2,94,0.4787,0.0,,Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-7,Text 8,doc18,2,medical,7,28,51.869,0,4,117,0.4188,50.0,'voorspellend'; 'zijn'; 'uitkomst werd meestal onderschat.',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
-8,Text 1,news_seattle_times.800119,4,news,1,38,72.565,0,0,111,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 1,news_seattle_times.800119,4,news,2,27,36.1,0,0,206,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 1,news_seattle_times.800119,4,news,3,12,43.337,0,0,222,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 1,news_seattle_times.800119,4,news,4,15,33.526,0,0,133,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 1,news_seattle_times.800119,4,news,5,8,64.67,0,0,118,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 1,news_seattle_times.800119,4,news,6,121,113.12499999999999,0,0,258,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 1,news_seattle_times.800119,4,news,7,15,112.445,0,0,220,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 2,doc34,4,medical,1,16,210.134,0,0,195,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 2,doc34,4,medical,2,20,116.47900000000001,0,0,198,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 2,doc34,4,medical,3,64,338.442,0,0,467,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 2,doc34,4,medical,4,63,59.568,0,0,86,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 2,doc34,4,medical,5,50,79.483,0,0,162,0.0,N/A,,Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
-8,Text 3,news_pa.5274,1,news,1,28,109.956,0,1,46,0.087,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,2,21,80.874,0,1,82,0.0732,N/A,'crisis',Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,3,21,148.305,0,1,295,0.061,N/A,'gevende task force',Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,4,77,82.16099999999999,0,4,162,0.0988,N/A,'isdoden',Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,5,36,76.485,0,0,112,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,6,17,30.899,0,2,304,0.0921,N/A,'communi'; 'mensen worden verwond',Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,7,83,149.44799999999998,1,2,303,0.1584,N/A,'voor gevangenisdoden',Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 3,news_pa.5274,1,news,8,36,174.101,0,2,275,0.0255,N/A,'her',Somewhat difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,1,0,0,0,2,81,0.1235,N/A,,Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,2,36,33.668,0,2,102,0.1471,N/A,,Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,3,52,143.702,0,1,128,0.0625,N/A,'sborging',Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,5,88,84.85000000000001,0,0,132,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,6,22,9.763,0,1,111,0.1171,N/A,'tel uitdaging',Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,7,33,177.921,0,4,95,0.4,N/A,'doen zich'; 'medische praktijken',Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,8,70,94.173,0,2,60,0.3667,N/A,'c beeldvormende'; 'methode',Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,9,56,94.056,0,7,212,0.1226,N/A,'onder'; 'de'; 'nood',Very difficult,Good,nan,nan,nan,nan
-8,Text 4,doc13,1,medical,10,30,90.536,0,6,293,0.1229,N/A,'variabel'; 'controle',Very difficult,Good,nan,nan,nan,nan
-8,Text 5,news_scotsman.87462,2,news,1,19,110.105,0,0,51,0.0,N/A,,Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,2,25,24.913,1,0,104,0.0288,N/A,'een',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,3,126,148.806,0,5,300,0.13,N/A,'geparkeerd'; 'explosie van de romp'; 'nemen',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,4,24,66.105,1,0,86,0.0581,N/A,' niet',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,5,72,69.437,0,6,190,0.2526,N/A,'vermelding'; 'uitgebreid'; 'staat dit vermeld',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,6,190,228.02599999999995,0,1,193,0.0725,N/A,'schadegevallen',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,7,29,64.333,0,2,76,0.1842,N/A,"'MAX lijn,'; 'ratio'",Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 5,news_scotsman.87462,2,news,8,89,184.964,0,1,265,0.0868,N/A,'medewerker van de media',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,1,5,32.479,1,0,122,0.041,N/A,'geen ',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,2,4,13.951,0,2,194,0.1134,N/A,'maagsonde',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,3,32,25.53,0,0,49,0.0,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,4,128,245.501,0,7,304,0.2467,N/A,'in'; 'gestational age'; 'weken opgenomen. Hun'; 'werden in'; 'studie opgenomen.',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,5,11,4.5969999999999995,0,1,139,0.1007,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,6,26,48.962,0,2,116,0.069,N/A,'drinken.',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,7,34,69.35000000000001,0,1,204,0.0049,N/A,' ',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 6,doc18,2,medical,8,15,28.576999999999998,0,3,162,0.3086,N/A,'gavagevoeding'; 'standaardzorggroep.',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
-8,Text 7,news_seattle_times.799809,3,news,1,1,13.746,0,2,92,0.2391,50.0,'keerpunt',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
-8,Text 7,news_seattle_times.799809,3,news,2,60,90.676,0,4,202,0.1238,50.0,''We'; 'vandaag',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
-8,Text 7,news_seattle_times.799809,3,news,3,1,13.333,0,2,208,0.0673,50.0,' impliceerde',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
-8,Text 7,news_seattle_times.799809,3,news,4,18,114.204,0,0,256,0.0,N/A,,Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
-8,Text 7,news_seattle_times.799809,3,news,5,9,29.538,0,2,223,0.0717,100.0,'bitcoinbeleggers',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
-8,Text 7,news_seattle_times.799809,3,news,6,108,345.33799999999997,0,6,523,0.1338,50.0,"''Met'; 'investeringsmiddel'; 'oplossingsarm'; 'naar'; 'Amerikanen mogelijk zal maken','",Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
-8,Text 8,doc20,3,medical,1,37,72.764,0,2,104,0.2788,100.0,'In het licht van'; 'co-management',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,2,25,150.145,0,1,174,0.0862,100.0,'traumapatiënten',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,3,80,241.96299999999997,0,4,225,0.2178,75.0,'het onderzoeken van'; 'basis van'; 'belangrijke gebieden.',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,4,136,202.16,0,3,106,0.3962,100.0,'patiënten'met''; 'voor geriatrische patiënten.',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,5,11,88.245,0,4,287,0.0871,100.0,'duidelijk meer'; 'gemeld',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,6,11,62.813,4,0,231,0.1169,75.0,' '; 'lengte',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,7,34,144.894,0,3,297,0.1414,100.0,'Orthogeriatrische'; 'prestaties bij overdracht',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
-8,Text 8,doc20,3,medical,8,13,25.939999999999998,0,1,168,0.0595,100.0,'medebeheer',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,1,19,96.955,0,0,51,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,2,6,10.48,0,0,104,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,3,87,173.87599999999998,0,0,300,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,4,0,220.279,0,0,86,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,5,61,125.233,0,0,190,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,6,50,282.62899999999996,0,0,193,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,7,7,44.756,0,0,76,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 1,news_seattle_times.800119,1,news,8,91,206.39,0,0,265,0.0,N/A,,Very easy,Fair,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,2,34,56.137,0,0,194,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,3,11,72.434,0,0,49,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,4,68,147.198,0,0,304,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,5,6,79.341,0,0,139,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,6,106,217.13400000000001,0,0,116,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,7,15,37.656,0,0,204,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,8,29,70.851,0,0,162,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 2,doc34,1,medical,1,0,0,0,0,122,0.0,N/A,,Very easy,Good,nan,nan,nan,nan
+6,Text 3,news_pa.5274,2,news,1,30,145.88,0,2,92,0.25,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 3,news_pa.5274,2,news,2,61,309.548,1,3,202,0.1337,N/A,'''; 'ondersch',Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 3,news_pa.5274,2,news,3,28,76.01299999999999,0,2,208,0.149,N/A,'fondsen impliceerde dat',Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 3,news_pa.5274,2,news,4,38,99.685,0,0,256,0.0,N/A,,Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 3,news_pa.5274,2,news,5,28,110.906,0,2,223,0.0673,N/A,'actief',Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 3,news_pa.5274,2,news,6,88,366.037,5,0,523,0.1472,N/A,'le marketing',Somewhat easy,Good,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 4,doc13,2,medical,1,0,0,0,5,104,0.3077,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,2,5,12.031,0,1,174,0.0345,N/A,'trauma',Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,3,30,63.556,0,5,225,0.1822,N/A,,Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,4,24,116.33900000000001,0,5,106,0.4717,N/A,'en'met''; ''zonder' co'; 'management voor'; 'at'; 'ische patiënten',Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,5,7,49.677,0,4,287,0.1429,N/A,'overbrengbaarheid'; 'meer verbeterd',Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,6,13,80.461,8,0,229,0.5022,N/A,'Er werden significante verschillen gevonden'; 'tot belangrijkste diagnoses',Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,7,1,313.029,0,4,297,0.1987,N/A,'hogeriatrische co',Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 4,doc13,2,medical,8,14,20.749000000000002,0,2,168,0.1548,N/A,'medebeheer',Neutral,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,1,77,116.739,0,2,111,0.2162,N/A,"'omworstelaars'; 'steak pies,'",Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,2,46,93.78699999999999,0,5,206,0.1553,N/A,"'bakkers'; 'hoek,'",Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,3,54,137.362,0,5,222,0.2883,N/A,'keten'; 'er’'; ' '; 'zijn''; 'de winkelketen een stabielere kostenbasis verwacht',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,4,56,74.235,0,5,133,0.3609,N/A,"'De'; '250-onderneming'; 'winkels op een netto basis,'",Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,5,30,75.071,0,2,118,0.1186,N/A,'op',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,6,148,268.333,0,2,258,0.1938,N/A,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 5,news_scotsman.87462,3,news,7,51,187.881,0,4,220,0.2727,N/A,'dat het een betaalbare'; 'aanbiedt'; 'intact blijft',Somewhat easy,Fair,Somewhat not useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,1,64,134.622,1,1,195,0.0974,N/A,'De specificatie'; 'niet',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,2,64,151.983,0,0,198,0.0,N/A,,Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,3,68,308.19,0,7,467,0.2784,N/A,"'VPT-prematuren,'; 'gestational age < 32 weken'; 'er werd onderzoek gedaan naar'",Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,4,56,135.14499999999998,0,3,86,0.3256,N/A,'VPT-geboren'; 'termijncontroles.',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,5,43,63.35,0,5,162,0.2099,N/A,'zuigelingen'; 'termijncontroles'; 'SES.',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,6,0,0,0,2,94,0.4787,N/A,,Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 6,doc18,3,medical,7,20,26.721,0,4,117,0.4188,N/A,'uitkomst werd meestal onderschat.',Neutral,Good,Somewhat useful,Somewhat accurate,nan,nan
+6,Text 7,news_seattle_times.799809,4,news,1,55,91.184,0,2,46,0.5217,0.0,'Geef'; 'WA opnieuw toezicht.',Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,2,8,154.84199999999998,0,2,82,0.4878,0.0,,Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,3,10,93.47300000000001,0,1,295,0.0339,0.0,,Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,4,29,22.947,0,3,162,0.1543,0.0,'De'; 'gevangenisdoden omkeren',Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,5,27,148.119,0,0,112,0.0,N/A,,Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,6,39,104.265,0,2,304,0.1118,0.0,'communiceren'; 'mensen worden verwond.',Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,7,69,259.972,0,5,303,0.1782,80.0,"'bureau'; 'toezicht op'; 'gevangenissen, op basis van gegevens.'",Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 7,news_seattle_times.799809,4,news,8,55,128.107,0,0,275,0.0,N/A,,Somewhat easy,Fair,Neutral,Not accurate nor inaccurate,Neutral,Not accurate nor inaccurate
+6,Text 8,doc20,4,medical,2,4,50.419,0,3,102,0.1863,100.0,'is'; 'apparatuurkosten.',Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,3,0,48.958,0,1,128,0.1328,0.0,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,4,13,44.82,0,0,143,0.0,N/A,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,5,72,87.228,0,0,132,0.0,N/A,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,6,3,54.626,0,2,111,0.0811,100.0,'De'; 'sleutel',Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,7,48,51.467,0,4,95,0.3158,50.0,"'doen zich'; 'voor,'; 'praktijken'",Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,8,21,46.221,0,0,60,0.0,N/A,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,9,56,121.148,0,7,212,0.4292,85.71,"'Als'; 'EMPoCUS-vaardigheden onder de knie zijn,'; 'de'; 'hun patiënten'; 'behandelen'; 'een verscheidenheid aan'",Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,10,15,58.985,0,0,293,0.0,N/A,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+6,Text 8,doc20,4,medical,1,0,0,0,0,81,0.0,100,,Very easy,Fair,Neutral,Somewhat accurate,Somewhat useful,Somewhat inaccurate
+7,Text 1,news_seattle_times.799809,1,news,1,47,115.66900000000001,0,0,46,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,2,22,165.37,0,0,82,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,3,64,144.02800000000002,0,0,295,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,4,62,79.751,0,0,162,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,5,20,66.50900000000001,0,0,112,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,6,86,254.814,0,0,304,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,7,51,156.51600000000002,0,0,303,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 1,news_seattle_times.799809,1,news,8,12,107.106,0,0,275,0.0,N/A,,Neutral,Fair,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,2,44,137.674,0,0,102,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,3,42,95.058,0,0,128,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,4,0,17.224,0,0,143,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,5,61,131.954,0,0,132,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,6,35,37.674,0,0,111,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,7,34,93.757,0,0,95,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,8,81,194.98600000000002,0,0,60,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,9,74,206.515,0,0,212,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,10,96,276.15500000000003,0,0,293,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 2,doc20,1,medical,1,0,0,0,0,81,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,1,15,68.162,0,2,51,0.0784,N/A,'na'; 'in',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,2,1,23.089,1,0,104,0.5577,N/A,'reizigers is het vliegtuigmodel een doorslaggevende factor',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,3,83,158.81,1,3,300,0.08,N/A,'park'; 'zullen',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,4,12,64.713,2,0,86,0.1047,N/A,'wordt'; 'niet',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,5,77,147.17,1,1,190,0.1368,N/A,'vermelding is uitgebreid',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,6,38,152.367,0,2,193,0.2228,N/A,'percentage schadegevallen',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,7,43,73.761,2,1,76,0.1842,N/A,,Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 3,news_seattle_times.800119,2,news,8,37,68.583,0,2,265,0.1245,N/A,'medewerker van de media',Somewhat easy,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+7,Text 4,doc34,2,medical,1,1,21.046,2,0,122,0.3115,N/A,'Kangoeroezorg is geen veilig',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,2,0,30.106,1,4,194,0.1907,N/A,,Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,3,0,3.024,0,0,49,0.0,N/A,,Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,4,75,197.93099999999998,0,5,304,0.1053,N/A,'tional age'; 'opgenomen',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,5,0,0,1,4,139,0.295,N/A,,Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,6,58,91.328,1,0,116,0.1983,N/A,'volledig konden drinken',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,7,17,27.576,0,4,204,0.1569,N/A,'Premature baby's',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 4,doc34,2,medical,8,5,39.313,0,7,162,0.3086,N/A,'gavagevoeding',Somewhat difficult,Good,Neutral,Not accurate nor inaccurate,nan,nan
+7,Text 5,news_pa.5274,3,news,1,41,87.101,0,2,92,0.2391,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+7,Text 5,news_pa.5274,3,news,2,7,46.012,0,4,202,0.1238,N/A,''We',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+7,Text 5,news_pa.5274,3,news,3,8,56.925,0,2,208,0.0673,N/A,' impliceerde',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+7,Text 5,news_pa.5274,3,news,4,19,104.66300000000001,0,0,256,0.0,N/A,,Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+7,Text 5,news_pa.5274,3,news,5,28,177.359,0,2,223,0.0717,0.0,'bitcoinbeleggers',Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+7,Text 5,news_pa.5274,3,news,6,152,327.42199999999997,0,6,523,0.1338,N/A,"''Met'; 'investeringsmiddel'; 'naar'; 'Amerikanen mogelijk zal maken','",Somewhat difficult,Good,Somewhat not useful,Not accurate nor inaccurate,nan,nan
+7,Text 6,doc13,3,medical,1,0,0,0,2,104,0.2788,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,2,7,23.895,0,1,174,0.0862,N/A,'traumapatiënten',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,3,130,217.914,0,4,225,0.2178,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,4,5,142.33800000000002,0,3,106,0.3962,N/A,'patiënten'met''; 'voor geriatrische patiënten.',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,5,6,43.759,0,4,287,0.0871,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,6,44,202.513,4,0,230,0.1174,N/A,' '; 'lengte'; 'de ziekenhuisopname',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,7,18,74.572,0,3,297,0.1414,N/A,'Orthogeriatrische'; 'prestaties bij overdracht',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 6,doc13,3,medical,8,35,150.85000000000002,0,1,168,0.0595,N/A,'medebeheer',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,nan,nan
+7,Text 7,news_scotsman.87462,4,news,1,87,104.95100000000001,0,2,111,0.2162,0.0,"'omworstelaars'; 'steak pies,'",Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 7,news_scotsman.87462,4,news,2,96,122.881,0,5,206,0.1553,0.0,"'bakkers'; 'hoek,'; 'de'; 'tijd'; 'zal doorvoeren'",Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 7,news_scotsman.87462,4,news,3,159,199.915,0,5,222,0.2883,100.0,'er’'; ' '; 'zijn''; 'de winkelketen een stabielere kostenbasis verwacht',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 7,news_scotsman.87462,4,news,4,131,164.27200000000002,0,5,133,0.3609,60.0,"'De'; '250-onderneming'; 'winkels op een netto basis,'; 'zijn'",Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 7,news_scotsman.87462,4,news,5,56,83.773,0,2,118,0.1186,0.0,'op'; 'reislocaties',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 7,news_scotsman.87462,4,news,6,110,199.99699999999999,0,2,258,0.1938,0.0,"'steakpudding heeft teruggebracht,'; 'kerstlunch-bagel.'",Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 7,news_scotsman.87462,4,news,7,69,106.394,0,4,220,0.2727,25.0,'aanbiedt'; 'belangrijk is dat'; 'intact blijft',Somewhat easy,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,1,27,93.237,1,1,195,0.0974,50.0,'De specificatie'; 'niet',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,2,45,102.889,0,0,198,0.0,N/A,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,3,243,448.907,0,7,467,0.2784,0.0,"'VPT-prematuren,'; 'gestational age < 32 weken'; 'er werd onderzoek gedaan naar'; 'verwerkingscomposiet'; 'Kaufman-Assessment'",Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,4,64,145.695,0,3,86,0.3256,33.33,'VPT-geboren'; 'termijncontroles.',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,5,44,146.725,0,5,162,0.2099,40.0,'zuigelingen'; 'VPT'; 'termijncontroles',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,6,0,38.348,0,2,94,0.4787,0.0,,Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+7,Text 8,doc18,4,medical,7,28,51.869,0,4,117,0.4188,50.0,'voorspellend'; 'zijn'; 'uitkomst werd meestal onderschat.',Somewhat difficult,Good,Somewhat useful,Somewhat accurate,Somewhat useful,Somewhat accurate
+8,Text 1,news_scotsman.87462,1,news,1,38,72.565,0,0,111,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 1,news_scotsman.87462,1,news,2,27,36.1,0,0,206,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 1,news_scotsman.87462,1,news,3,12,43.337,0,0,222,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 1,news_scotsman.87462,1,news,4,15,33.526,0,0,133,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 1,news_scotsman.87462,1,news,5,8,64.67,0,0,118,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 1,news_scotsman.87462,1,news,6,121,113.12499999999999,0,0,258,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 1,news_scotsman.87462,1,news,7,15,112.445,0,0,220,0.0,N/A,,Somewhat difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,1,16,210.134,0,0,195,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,2,20,116.47900000000001,0,0,198,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,3,64,338.442,0,0,467,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,4,63,59.568,0,0,86,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,5,50,79.483,0,0,162,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,6,0,0,0,0,94,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 2,doc18,1,medical,7,0,0,0,0,117,0.0,N/A,,Very difficult,Good,nan,nan,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,1,28,109.956,0,1,46,0.087,N/A,,Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,2,21,80.874,0,1,82,0.0732,N/A,'crisis',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,3,21,148.305,0,1,295,0.061,N/A,'gevende task force',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,4,77,82.16099999999999,0,4,162,0.0988,N/A,'isdoden',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,5,36,76.485,0,0,112,0.0,N/A,,Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,6,17,30.899,0,2,304,0.0921,N/A,'communi'; 'mensen worden verwond',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,7,83,149.44799999999998,1,2,303,0.1584,N/A,'voor gevangenisdoden',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 3,news_seattle_times.799809,2,news,8,36,174.101,0,2,275,0.0255,N/A,'her',Somewhat easy,Fair,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,1,0,0,0,2,81,0.1235,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,2,36,33.668,0,2,102,0.1471,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,3,52,143.702,0,1,128,0.0625,N/A,'sborging',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,5,88,84.85000000000001,0,0,132,0.0,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,6,22,9.763,0,1,111,0.1171,N/A,'tel uitdaging',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,7,33,177.921,0,4,95,0.4,N/A,'doen zich'; 'medische praktijken',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,8,70,94.173,0,2,60,0.3667,N/A,'c beeldvormende'; 'methode',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,9,56,94.056,0,7,212,0.1226,N/A,'onder'; 'de'; 'nood',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,10,30,90.536,0,6,293,0.1229,N/A,'variabel'; 'controle',Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 4,doc20,2,medical,4,0,0,0,0,143,0.0,N/A,,Somewhat easy,Good,Somewhat useful,Somewhat inaccurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,1,19,110.105,0,0,51,0.0,N/A,,Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,2,25,24.913,1,0,104,0.0288,N/A,'een',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,3,126,148.806,0,5,300,0.13,N/A,'geparkeerd'; 'explosie van de romp'; 'nemen',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,4,24,66.105,1,0,86,0.0581,N/A,' niet',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,5,72,69.437,0,6,190,0.2526,N/A,'vermelding'; 'uitgebreid'; 'staat dit vermeld',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,6,190,228.02599999999995,0,1,193,0.0725,N/A,'schadegevallen',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,7,29,64.333,0,2,76,0.1842,N/A,"'MAX lijn,'; 'ratio'",Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 5,news_seattle_times.800119,3,news,8,89,184.964,0,1,265,0.0868,N/A,'medewerker van de media',Somewhat easy,Fair,Somewhat useful,Somewhat accurate,nan,nan
+8,Text 6,doc34,3,medical,1,5,32.479,1,0,122,0.041,N/A,'geen ',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,2,4,13.951,0,2,194,0.1134,N/A,'maagsonde',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,3,32,25.53,0,0,49,0.0,N/A,,Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,4,128,245.501,0,7,304,0.2467,N/A,'in'; 'gestational age'; 'weken opgenomen. Hun'; 'werden in'; 'studie opgenomen.',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,5,11,4.5969999999999995,0,1,139,0.1007,N/A,,Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,6,26,48.962,0,2,116,0.069,N/A,'drinken.',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,7,34,69.35000000000001,0,1,204,0.0049,N/A,' ',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 6,doc34,3,medical,8,15,28.576999999999998,0,3,162,0.3086,N/A,'gavagevoeding'; 'standaardzorggroep.',Neutral,Fair,Somewhat not useful,Somewhat inaccurate,nan,nan
+8,Text 7,news_pa.5274,4,news,1,1,13.746,0,2,92,0.2391,50.0,'keerpunt',Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 7,news_pa.5274,4,news,2,60,90.676,0,4,202,0.1238,50.0,''We'; 'vandaag',Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 7,news_pa.5274,4,news,3,1,13.333,0,2,208,0.0673,50.0,' impliceerde',Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 7,news_pa.5274,4,news,4,18,114.204,0,0,256,0.0,N/A,,Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 7,news_pa.5274,4,news,5,9,29.538,0,2,223,0.0717,100.0,'bitcoinbeleggers',Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 7,news_pa.5274,4,news,6,108,345.33799999999997,0,6,523,0.1338,50.0,"''Met'; 'investeringsmiddel'; 'oplossingsarm'; 'naar'; 'Amerikanen mogelijk zal maken','",Somewhat difficult,Fair,Extremely useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,1,37,72.764,0,2,104,0.2788,100.0,'In het licht van'; 'co-management',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,2,25,150.145,0,1,174,0.0862,100.0,'traumapatiënten',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,3,80,241.96299999999997,0,4,225,0.2178,75.0,'het onderzoeken van'; 'basis van'; 'belangrijke gebieden.',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,4,136,202.16,0,3,106,0.3962,100.0,'patiënten'met''; 'voor geriatrische patiënten.',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,5,11,88.245,0,4,287,0.0871,100.0,'duidelijk meer'; 'gemeld',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,6,11,62.813,4,0,231,0.1169,75.0,' '; 'lengte',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,7,34,144.894,0,3,297,0.1414,100.0,'Orthogeriatrische'; 'prestaties bij overdracht',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
+8,Text 8,doc13,4,medical,8,13,25.939999999999998,0,1,168,0.0595,100.0,'medebeheer',Very difficult,Fair,Somewhat useful,Somewhat accurate,Extremely useful,Somewhat accurate
