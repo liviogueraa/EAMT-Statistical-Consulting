@@ -401,3 +401,4 @@ ggplot(data_plot, aes(x = prc_sugg_accepted, y = keystrokes)) +
     x = "% Suggestions Accepted",
     y = "Number of Keystrokes"
   )
+
