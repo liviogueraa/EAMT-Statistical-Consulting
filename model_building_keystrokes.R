@@ -234,3 +234,232 @@ VarCorr(final_recovery_model)
 
 # Returns the vcov matrix for the fixed effects
 vcov(final_recovery_model)$cond
+
+
+#### Comparing models with and w/o time = 0 obs ####
+
+data_nonzero_time <- data %>%
+  filter(time != 0)
+
+# what is the new distribution of keystrokes?
+hist(data_nonzero_time$keystrokes,
+     probability = TRUE,
+     main = "Histogram with Density Curve - raw data",
+     xlab = "Keystrokes",
+     col = "lightgray",
+     border = "white")
+
+lines(density(data_nonzero_time$keystrokes),
+      col = "red",
+      lwd = 2)
+
+
+# does the square root work now in this case?
+hist(sqrt(data_nonzero_time$keystrokes),
+     probability = TRUE,
+     main = "Histogram with Density Curve - Sqrt",
+     xlab = "Keystrokes",
+     col = "lightgray",
+     border = "white")
+
+lines(density(sqrt(data_nonzero_time$keystrokes)),
+      col = "red",
+      lwd = 2)
+
+
+
+# does the log work now in this case?
+hist(log(data_nonzero_time$keystrokes+1),
+     probability = TRUE,
+     main = "Histogram with Density Curve - Log",
+     xlab = "Keystrokes",
+     col = "lightgray",
+     border = "white")
+
+lines(density(log(data_nonzero_time$keystrokes+1)),
+      col = "red",
+      lwd = 2)
+
+
+
+# Are the realative models well-defined?
+
+# let's see if LMM works with sqrt (check residuals)
+sqrt_keystrokes_model <- lmer(scondition * domain + 
+                                scale(num_characters) + 
+                                scale(num_minor) + 
+                                scale(num_major) + 
+                                scale(MT_Quality) + 
+                                scale(Difficulty) + 
+                                (1 | PET) +            
+                                (1 | text_name), 
+                             data = data_nonzero_time, 
+                             REML = FALSE)
+summary(sqrt_keystrokes_model)
+
+vcov(sqrt_keystrokes_model)
+
+library(lmerTest) # Load this first
+# Then re-run your model code
+summary(sqrt_keystrokes_model)
+
+# checking the residuals
+library(performance)
+library(see)
+
+# Basic residual vs. fitted plot
+plot(sqrt_keystrokes_model)
+
+# Q-Q plot for residuals
+library(lattice)
+qqmath(sqrt_keystrokes_model)
+
+# Q-Q plots for all random effects
+dotplot(ranef(sqrt_keystrokes_model, condVar = TRUE))
+
+# check for outliers
+# influence(sqrt_keystrokes_model)
+library(lme4)
+library(lattice)
+dotplot(ranef(sqrt_keystrokes_model))
+
+
+
+# let's see if LMM works with log (check residuals)
+log_keystrokes_model <- lmer(log(keystrokes+1) ~ 
+                               condition * domain + 
+                               scale(num_characters) + 
+                               scale(num_minor) + 
+                               scale(num_major) + 
+                               scale(MT_Quality) + 
+                               scale(Difficulty) + 
+                               (1 | PET) +            
+                               (1 | text_name), 
+                   data = data_nonzero_time, 
+                   REML = FALSE)
+
+summary(log_keystrokes_model)
+
+
+
+# checking the residuals
+library(performance)
+library(see)
+
+# Basic residual vs. fitted plot
+plot(log_keystrokes_model)
+
+# Q-Q plot for residuals
+library(lattice)
+qqmath(log_keystrokes_model)
+
+# Q-Q plots for all random effects
+dotplot(ranef(log_keystrokes_model, condVar = TRUE))
+
+# check for outliers
+# influence(sqrt_keystrokes_model)
+library(lme4)
+library(lattice)
+dotplot(ranef(sqrt_keystrokes_model))
+
+
+
+vcov(log_keystrokes_model)
+
+nonzero_time_model <- glmmTMB(
+  keystrokes ~ condition * domain + 
+    scale(num_characters) + 
+    scale(num_minor) + 
+    scale(num_major) + 
+    scale(MT_Quality) + 
+    scale(Difficulty) + 
+    (1 | PET) +            # Essential: Translator variance
+    (1 | text_name),        # Essential: Text difficulty variance
+  family = tweedie(), 
+  data = data_nonzero_time
+)
+
+nonzero_time_model$sdr$pdHess
+res <- simulateResiduals(nonzero_time_model)
+plot(res)
+
+
+
+## BOX COX 
+
+library(MASS)
+
+# 1. Run the boxcox on a standard lm version of your model
+# Note: Use + 1 if you have any zeros in your data
+library(MASS)
+bc <- boxcox(keystrokes + 1 ~ condition * domain + num_characters + 
+               num_minor + num_major + MT_Quality + Difficulty, 
+             data = data_nonzero_time)
+
+# 2. Extract the lambda that maximizes the log-likelihood
+optimal_lambda <- bc$x[which.max(bc$y)]
+print(optimal_lambda)
+# it suggests to use log(x+1)
+
+######################
+#  COMPARISON OF TIMES
+
+data_time <- read.csv("data/data_time.csv")
+hist(data_time$time,
+     probability = TRUE,
+     main = "Histogram with Density Curve",
+     xlab = "Keystrokes",
+     col = "lightgray",
+     border = "white")
+
+lines(density(data_time$time),
+      col = "red",
+      lwd = 2)
+
+library(ggplot2)
+library(dplyr)
+
+# 1. Prepare the comparison data
+# Assuming 'data' is your main dataset and 'data_time' contains the imputed values
+original_time <- data %>% 
+  filter(time > 0) %>% 
+  select(time, condition) %>% 
+  mutate(Source = "Original")
+
+imputed_time <- data_time %>% 
+  select(time, condition) %>% 
+  mutate(Source = "Imputed")
+
+# Combine them for comparison
+comp_df <- rbind(original_time, imputed_time)
+
+# 2. Visual Check: Density plots per condition
+ggplot(comp_df, aes(x = time, fill = Source)) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~condition) +
+  theme_minimal() +
+  labs(title = "Comparison of Original vs. Imputed Time Distributions",
+       x = "Time (seconds)", y = "Density")
+
+# 3. Statistical Check: Descriptive Stats
+summary_stats <- comp_df %>%
+  group_by(condition, Source) %>%
+  summarise(
+    N = n(),
+    Mean = mean(time),
+    Median = median(time),
+    SD = sd(time)
+  )
+print(summary_stats)
+
+# 4. Statistical Check: Wilcoxon Test (Non-parametric)
+# Check overall if distributions differ
+wilcox.test(time ~ Source, data = comp_df)
+
+# Check per condition using a loop
+lapply(split(comp_df, comp_df$condition), function(d) {
+  wilcox.test(time ~ Source, data = d)
+})
+
+
+
