@@ -114,6 +114,65 @@ lines(density(radice_key),
       lwd = 2)
 
 
+# More elegant version
+library(ggplot2)
+library(patchwork)
+
+# Create a shared theme to make text larger and clear for a screen
+presentation_theme <- theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    axis.title = element_text(size = 11),
+    plot.margin = margin(10, 5, 10, 5) 
+  )
+
+# 1. Raw Data Plot
+p1 <- ggplot(data, aes(x = keystrokes)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "#3498db", color = "white") +
+  geom_density(color = "#e74c3c", linewidth = 1.2) +
+  presentation_theme +
+  labs(title = "Original Data", 
+       subtitle = "High skew & zero-inflation",
+       x = "Keystrokes", y = "Density")
+
+# 2. Log Plot
+p2 <- ggplot(data, aes(x = log(keystrokes + 1))) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "#95a5a6", color = "white") +
+  geom_density(color = "#e74c3c", linewidth = 1.2) +
+  presentation_theme +
+  labs(title = "Log(x + 1)", 
+       subtitle = "Zero-spike persists",
+       x = "Log(Keystrokes + 1)", y = "")
+
+# 3. Square Root Plot
+p3 <- ggplot(data, aes(x = sqrt(keystrokes))) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "#95a5a6", color = "white") +
+  geom_density(color = "#e74c3c", linewidth = 1.2) +
+  presentation_theme +
+  labs(title = "Square Root", 
+       subtitle = "Normality not achieved",
+       x = "sqrt(Keystrokes)", y = "")
+
+# Combined
+combined_plot <- (p1 | p2 | p3) + 
+  plot_annotation(
+    title = 'Why a Tweedie Model? Comparing Data Transformations',
+    theme = theme(plot.title = element_text(size = 20, face = "bold", hjust = 0.5))
+  )
+
+# SHOW PLOT
+combined_plot
+
+ggsave("tweedie_justification.png", 
+       plot = combined_plot, 
+       width = 12,    
+       height = 5,    
+       dpi = 300)
+
+
+
+
 # box cox
 library(MASS)
 dummy_data <- data
@@ -216,13 +275,14 @@ final_recovery_model <- glmmTMB(
     scale(num_major) + 
     scale(MT_Quality) + 
     scale(Difficulty) + 
-    (1 | PET) +            # Essential: Translator variance
-    (1 | text_name),        # Essential: Text difficulty variance
+    (1 | PET) +
+    (1 | text_name / Sent_id),       
   family = tweedie(), 
   data = data
 )
 
 # 2. Check stability
+library(DHARMa)
 final_recovery_model$sdr$pdHess
 res <- simulateResiduals(final_recovery_model)
 plot(res)
@@ -253,7 +313,7 @@ plot_model(final_recovery_model, type = "re")
 car::Anova(final_recovery_model, type = "III")
 
 
-#### Simplifying the model ####
+#### Simplifying the model to make residuals homoschedastic ####
 # Creating the simplified version: no interaction term
 reduced_model <- update(final_recovery_model, . ~ . - condition:domain)
 
@@ -266,11 +326,26 @@ performance::check_collinearity(final_recovery_model) # since the full model has
 performance::check_collinearity(reduced_model) # here no highly correlated variables
 
 
+# 2. Check stability
+library(DHARMa)
+final_recovery_model$sdr$pdHess
+res <- simulateResiduals(reduced_model)
+plot(res)
+
+
 # Let's try to simplify some more
 summary(reduced_model)
 
+
 # no Difficulty term
 reduced_model_noDiff <- update(reduced_model, . ~ . - scale(Difficulty))
+
+res <- simulateResiduals(reduced_model_noDiff)
+plot(res)
+# now it works
+
+summary(reduced_model_noDiff)
+
 
 # Compare them
 anova(reduced_model, reduced_model_noDiff)
@@ -278,10 +353,160 @@ anova(reduced_model, reduced_model_noDiff)
 
 summary(reduced_model_noDiff)
 
+#### Thus, the final model is reduced_model_noDiff ####
+
+plot_model(reduced_model_noDiff, type = "re")
+
+
+library(ggplot2)
+library(dplyr)
+
+# extract fixed effects table
+coefs <- summary(reduced_model_noDiff)$coefficients$cond
+df <- as.data.frame(coefs)
+
+# add term names
+df$term <- rownames(df)
+
+# rename columns for convenience
+df <- df %>%
+  rename(
+    estimate = Estimate,
+    std.error = `Std. Error`,
+    p.value = `Pr(>|z|)`
+  )
+
+# get confidence intervals (Wald = faster)
+ci <- confint(reduced_model_noDiff, method = "Wald")
+
+# keep only fixed effects (match row names)
+ci <- as.data.frame(ci)
+ci$term <- rownames(ci)
+
+df <- df %>%
+  left_join(ci, by = "term") %>%
+  rename(conf.low = `2.5 %`, conf.high = `97.5 %`)
+
+# remove intercept
+df <- df %>%
+  filter(term != "(Intercept)")
+
+# relabel terms (optional but important for presentation)
+df <- df %>%
+  mutate(
+    term = recode(term,
+                  "condition2" = "Condition 2",
+                  "condition3" = "Condition 3",
+                  "condition4" = "Condition 4",
+                  "domainnews" = "Domain: News",
+                  "scale(num_characters)" = "Text length",
+                  "scale(num_minor)" = "Minor errors",
+                  "scale(num_major)" = "Major errors",
+                  "scale(MT_Quality)" = "MT quality"
+    ),
+    significance = ifelse(p.value < 0.05, "Significant", "Not significant")
+  )
+
+library(ggplot2)
+library(dplyr)
+library(forcats)
+
+# reorder: significant first, then by effect size
+df <- df %>%
+  mutate(significant_flag = p.value < 0.05) %>%
+  arrange(desc(significant_flag), desc(abs(estimate))) %>%
+  mutate(term = factor(term, levels = rev(term)))
+
+# plot
+p <- ggplot(df, aes(x = estimate, y = term)) +
+  geom_vline(xintercept = 0, linetype = "dashed", linewidth = 0.6, color = "gray50") +
+  
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high),
+                 height = 0.2, linewidth = 0.8, color = "gray40") +
+  
+  geom_point(aes(shape = significant_flag),
+             size = 3, stroke = 1.1, color = "black", fill = "white") +
+  
+  scale_shape_manual(values = c(1, 16), guide = "none") +
+  
+  labs(
+    title = "Effects on Keystrokes",
+    subtitle = "Estimates with 95% confidence intervals (log scale)",
+    x = "Effect size",
+    y = NULL
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "gray30"),
+    axis.text.y = element_text(size = 11),
+    axis.text.x = element_text(size = 10),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_line(color = "gray85"),
+    plot.margin = margin(10, 15, 10, 10)
+  )
+
+# display
+p
+
+# save 
+ggsave(
+  filename = "keystrokes_effects_plot.png",
+  plot = p,
+  width = 7,
+  height = 4.5,
+  dpi = 300
+)
+
+
+#### random interceptsplots ####
+library(ggplot2)
+library(glmmTMB)
+library(sjPlot)
+# Use the specific sjPlot function
+sjPlot::plot_model(reduced_model_noDiff, type = "re", grid = FALSE)[[3]]+
+  theme_minimal()+
+  labs(x = "Text", y= "Random Intercept", title = "Random Effects: Texts")
+
+
+
 # What is the statistical power of this model?
 # Extract the power parameter (rho)
 glmmTMB::family_params(reduced_model_noDiff) 
 # This means we have some "zero-keystroke" tasks and the rest follow a skewed continuous distribution.
+library(rlang)
+library(broom.mixed)
+library(ggplot2)
+library(dplyr)
+
+# 1. Extract the random effects into a tidy data frame
+# 'condVar = TRUE' gets the standard errors for those "whiskers"
+re_data <- tidy(reduced_model_noDiff, effects = "ran_vals", conf.int = TRUE)
+
+# 2. Plotting
+ggplot(re_data, aes(x = estimate, y = reorder(level, estimate), xmin = conf.low, xmax = conf.high)) +
+  # Add a vertical line at 0 (the population average)
+  geom_vline(xintercept = 0, linetype = "dashed", color = "red", alpha = 0.5) +
+  # Use pointrange for the dots and the error bars
+  geom_pointrange(color = "#2c3e50", size = 0.4) +
+  # Facet by the grouping variable (PET vs Text vs Sentence)
+  facet_wrap(~group, scales = "free_y", ncol = 1) +
+  # Clean up the look
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Random Effects: Deviation from Population Average",
+    subtitle = "Points represent shifts in baseline effort per participant and sentence",
+    x = "Effect Size (Log Scale)",
+    y = ""
+  ) +
+  theme(
+    strip.text = element_text(face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+
 
 
 #### Comparing final model Vs other models ####
@@ -289,13 +514,15 @@ glmmTMB::family_params(reduced_model_noDiff)
 # Defining the core formula (all predictors)
 main_formula <- keystrokes ~ condition + domain + scale(num_characters) + 
   scale(num_minor) + scale(num_major) + scale(MT_Quality) + 
-  (1 | PET) + (1 | text_name)
+  (1 | PET) + (1 | text_name / Sent_id)
+
 
 
 # 1. Current Tweedie Model
 mod_tweedie <- glmmTMB(main_formula, 
                        family = tweedie(link = "log"), 
                        data = data)
+
 
 # 2. Zero-Inflated Negative Binomial
 # (Assumes some zeros come from a separate 'always zero' process)
@@ -321,21 +548,22 @@ print(comparison)
 # The 'rho' (power parameter)
 glmmTMB::family_params(mod_tweedie)
 
-# Even though the Hurdle model has a slightly lower AIC (a difference of ~2.2 is very small), 
+# Even though the Hurdle model has a slightly lower AIC, 
 # We would argue for the Tweedie model for three reasons:
 # 1) The BIC weight for the Tweedie model is >.999. This is a massive statistical signal that the Tweedie model
 # is the most parsimonious. 
-# 2) The Tweedie model has the lowest RMSE (38.347). This means its actual predictions are closer to actual data points
+# 2) The Tweedie model has the lowest RMSE (31.539). This means its actual predictions are closer to actual data points
 # than the other two models.
-# 3) In the Tweedie model, the Itra Class Correlation (ICC) is 0.367, while in the ZI model, it's 0.922, which is
-# high and often suggests the model is struggling to separate the random effects from the zero-inflation logic.
+# 3) In the Tweedie model, the Itra Class Correlation (ICC) is 0.548, while in the ZI model, it's 0.956, which is
+# high and might suggests that the model is struggling to separate the random effects from the zero-inflation logic.
 
-# For the Marginal R^2 (0.205): Fixed effects (condition, length, quality, etc.) explain about 20.5% of the variance 
+# For the Marginal R^2 (0.191): Fixed effects (condition, length, quality, etc.) explain about 19.1% of the variance 
 # in keystrokes. 
-# For Conditional R^2 (0.497): When we add in the individual differences of the translators and the specific 
-# texts, we are explaining nearly 50% of the variance.
+# For Conditional R^2 (0.634): Adding the random part we are explaining nearly 64% of the variance.
 
 
+exp(0.36379)
+exp(-0.14641)
 
 #### Comparing models with and w/o time = 0 obs ####
 
