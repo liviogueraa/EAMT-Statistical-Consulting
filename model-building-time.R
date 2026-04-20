@@ -191,3 +191,57 @@ qqline(residuals(model_fixed), col = "red")
 pet_re <- ranef(model_fixed)$PET[,1]
 qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
 qqline(pet_re, col = "red")
+
+
+# Model with new time observations
+
+data_time <- read_csv("data/data_time.csv")
+View(data_time)
+
+indices_zeros <- which(data$time == 0)
+
+data$time_hybrid <- data$time
+data$time_hybrid[indices_zeros] <- data_time$time
+
+data_clean2 <- data[data$time_hybrid>1,]
+
+model_hyb <- lmer(log(time_hybrid) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                     (1 | PET) + (1 | text_name) + (1 | Sent_id), 
+                   data = data_clean2, 
+                   REML = FALSE)
+
+summary(model_hyb)
+
+model_hyb2 <- lmer(log(time_hybrid) ~ 
+                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                  (1 | PET) + (1 | text_name), 
+                data = data_clean2, 
+                REML = FALSE)
+
+summary(model_hyb2)
+
+
+model_hyb3 <- lmer(log(time_hybrid) ~ 
+                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                  (1 | PET), 
+                data = data_clean2, 
+                REML = TRUE)
+summary(model_hyb3)
+
+icc_results2 <- icc(model_hyb3)
+
+print(icc_results2) 
+
+r2_results2 <- r2(model_hyb3)
+
+print(r2_results2) 
+
+plot(model_hyb3, which = 1, main = "Residuals vs Fitted")
+qqnorm(residuals(model_hyb3))
+qqline(residuals(model_hyb3), col = "red")
+
+pet_re1 <- ranef(model_hyb3)$PET[,1]
+qqnorm(pet_re1, main = "Q-Q Plot: Random Effects (PET)")
+qqline(pet_re1, col = "red")
+
