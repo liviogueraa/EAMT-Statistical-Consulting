@@ -236,6 +236,107 @@ VarCorr(final_recovery_model)
 vcov(final_recovery_model)$cond
 
 
+#### visualising random intercepts ####
+library(glmmTMB)
+library(sjPlot)
+
+# Assuming your model looks something like this:
+# model <- glmmTMB(recovery_time ~ x1 + (1|group), 
+#                  family = tweedie(), data = df)
+
+# This creates the "Caterpillar plot" automatically
+plot_model(final_recovery_model, type = "re")
+
+
+
+#### Does condition matter overall? ####
+car::Anova(final_recovery_model, type = "III")
+
+
+#### Simplifying the model ####
+# Creating the simplified version: no interaction term
+reduced_model <- update(final_recovery_model, . ~ . - condition:domain)
+
+# Compare them
+anova(final_recovery_model, reduced_model)
+# no significant differences in predictive power and AIC and BIC are lower, we keep the reduced
+
+# Check Variance Inflation Factors
+performance::check_collinearity(final_recovery_model) # since the full model has interaction terms. VIFs might be inflated
+performance::check_collinearity(reduced_model) # here no highly correlated variables
+
+
+# Let's try to simplify some more
+summary(reduced_model)
+
+# no Difficulty term
+reduced_model_noDiff <- update(reduced_model, . ~ . - scale(Difficulty))
+
+# Compare them
+anova(reduced_model, reduced_model_noDiff)
+# clear indication to stick with the second reduced model (no difficulty)
+
+summary(reduced_model_noDiff)
+
+# What is the statistical power of this model?
+# Extract the power parameter (rho)
+glmmTMB::family_params(reduced_model_noDiff) 
+# This means we have some "zero-keystroke" tasks and the rest follow a skewed continuous distribution.
+
+
+#### Comparing final model Vs other models ####
+
+# Defining the core formula (all predictors)
+main_formula <- keystrokes ~ condition + domain + scale(num_characters) + 
+  scale(num_minor) + scale(num_major) + scale(MT_Quality) + 
+  (1 | PET) + (1 | text_name)
+
+
+# 1. Current Tweedie Model
+mod_tweedie <- glmmTMB(main_formula, 
+                       family = tweedie(link = "log"), 
+                       data = data)
+
+# 2. Zero-Inflated Negative Binomial
+# (Assumes some zeros come from a separate 'always zero' process)
+mod_zinb <- glmmTMB(main_formula, 
+                    ziformula = ~1, 
+                    family = nbinom2, 
+                    data = data)
+
+# 3. Hurdle Model (Truncated Negative Binomial)
+# (Assumes a 'gatekeeper' process: 0 vs >0, then counts for the rest)
+mod_hurdle <- glmmTMB(main_formula, 
+                      ziformula = ~., 
+                      family = truncated_nbinom2, 
+                      data = data)
+
+library(performance)
+
+# Compare them side-by-side
+comparison <- compare_performance(mod_tweedie, mod_zinb, mod_hurdle, metrics = "common")
+print(comparison)
+
+
+# The 'rho' (power parameter)
+glmmTMB::family_params(mod_tweedie)
+
+# Even though the Hurdle model has a slightly lower AIC (a difference of ~2.2 is very small), 
+# We would argue for the Tweedie model for three reasons:
+# 1) The BIC weight for the Tweedie model is >.999. This is a massive statistical signal that the Tweedie model
+# is the most parsimonious. 
+# 2) The Tweedie model has the lowest RMSE (38.347). This means its actual predictions are closer to actual data points
+# than the other two models.
+# 3) In the Tweedie model, the Itra Class Correlation (ICC) is 0.367, while in the ZI model, it's 0.922, which is
+# high and often suggests the model is struggling to separate the random effects from the zero-inflation logic.
+
+# For the Marginal R^2 (0.205): Fixed effects (condition, length, quality, etc.) explain about 20.5% of the variance 
+# in keystrokes. 
+# For Conditional R^2 (0.497): When we add in the individual differences of the translators and the specific 
+# texts, we are explaining nearly 50% of the variance.
+
+
+
 #### Comparing models with and w/o time = 0 obs ####
 
 data_nonzero_time <- data %>%
@@ -282,7 +383,7 @@ lines(density(log(data_nonzero_time$keystrokes+1)),
 
 
 
-# Are the realative models well-defined?
+# Are the relative models well-defined?
 
 # let's see if LMM works with sqrt (check residuals)
 sqrt_keystrokes_model <- lmer(scondition * domain + 
