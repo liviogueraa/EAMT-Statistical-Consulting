@@ -16,6 +16,7 @@ library(lattice)
 library(sjPlot)  
 library(mice)
 library(performance)
+library(ggeffects)
 
 # Factorization of categorical variables
 
@@ -29,6 +30,10 @@ data$MT_Quality <- as.numeric(data$`How good was the quality of MT?`)
 data$Difficulty <- as.numeric(data$`How difficult to translate was the source text?`)
 
 # Analysis of outcome variable distribution
+
+zeros<-data[data$time == 0,]
+table(zeros$condition, zeros$domain)
+table(data$condition, data$domain)
 
 View(subset(data, condition == 1 & domain == "medical"))
 
@@ -53,11 +58,13 @@ p2 <- ggplot(data_clean, aes(x = sqrt(time))) +
 
 p1 + p2
 
-# Model building - Full data
+#######################################
+# Model building - Full raw data
+#######################################
 
 model_full <- lmer(log(time+1) ~ 
                      condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
-                     (1 | PET) + (1 | text_name) + (1 | Sent_id), 
+                     (1 | PET) + (1 | text_name / Sent_id), 
                    data = data, 
                    REML = FALSE)
 
@@ -65,7 +72,7 @@ summary(model_full)
 
 model_2 <- lmer(log(time+1) ~ 
                   condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                  (1 | PET), 
+                  (1 | PET) + (1 | text_name : Sent_id), 
                 data = data, 
                 REML = FALSE)
 
@@ -73,12 +80,42 @@ summary(model_2)
 
 anova(model_full, model_2)
 
+model_2.1 <- lmer(log(time+1) ~ 
+                  condition * domain + num_characters + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
+                data = data, 
+                REML = FALSE)
+
+summary(model_2.1)
+
+anova(model_2, model_2.1)
+
 model_3 <- lmer(log(time+1) ~ 
-                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                  (1 | PET), 
+                  condition * domain + num_characters + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
                 data = data, 
                 REML = TRUE)
 summary(model_3)  
+# None of the condition effects are statistically relevant
+# only one close is condition 2 in medical texts, whose interval is almost all 
+# below 0
+
+eff_int_raw <- predict_response(model_3, terms = c("condition", "domain"))
+plot(eff_int_raw) + 
+  labs(
+    title = "Predicted Translation Time by Condition and Domain",
+    subtitle = "Values back-transformed from Log to Seconds",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+plot_model(model_3, 
+           type = "est", 
+           show.values = TRUE, 
+           value.offset = .3,
+           title = "Fixed Effects Estimates (Log Scale)")
 
 icc_results <- icc(model_3)
 
@@ -88,20 +125,24 @@ r2_results <- r2(model_3)
 
 print(r2_results) 
 
-plot(model_3, which = 1, main = "Residuals vs Fitted")
+plot(model_3, which = 1, main = "Residuals vs Fitted") 
+# There is a systematic pattern of errors due to the presence of time = 0 observations
+# violating the assumption of homoscedasticity (constant variance of errors)
 qqnorm(residuals(model_3))
 qqline(residuals(model_3), col = "red")
+# The QQplot is completely skewed in lower values aswell
+# residuals are NOT normally distributed
 
-pet_re <- ranef(model_3)$PET[,1]
-qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
-qqline(pet_re, col = "red")
+# therefore results are unreliable
 
 
-# Model building - data_clean
+#######################################
+# Model building - Dataset with removed 0 time instances
+#######################################
 
 model_full <- lmer(log(time+1) ~ 
                      condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
-                     (1 | PET) + (1 | text_name) + (1 | Sent_id), 
+                     (1 | PET) + (1 | text_name : Sent_id), 
                    data = data_clean, 
                    REML = FALSE)
 
@@ -109,7 +150,7 @@ summary(model_full)
 
 model_2 <- lmer(log(time+1) ~ 
                      condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                     (1 | PET) + (1 | text_name), 
+                     (1 | PET) + (1 | text_name : Sent_id), 
                    data = data_clean, 
                    REML = FALSE)
 
@@ -119,81 +160,113 @@ anova(model_full, model_2)
 
 model_3 <- lmer(log(time+1) ~ 
                   condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                  (1 | PET) + (1 | text_name), 
+                  (1 | PET) + (1 | text_name : Sent_id), 
                 data = data_clean, 
                 REML = TRUE)
 summary(model_3)  
-# Random effects:
-# PET Variance is quite high, meaning some translators are generally faster than others
-# Text variance is instead lower, texts were balanced
-# Residual is the largest, which is expected when measuring human velocity
-
-# Fixed effects
-# to interpret using the inverse formula exp(est) - 1 
-# (at baseline level is for medical domain only) 
-# (to interpret news we have to add interactions)
-# Condition 2 is the strongest effect, reducing time from baseline by 44%
-# Condition 3 by 32%
-# Condition 4 by 25%
-# all 3 are significative at alpha = 0.05 level
-
-# num characters/ num minor, major/ mt quality are all relevant controls
-
-# On news domain apparently condition 4 is the fastest while others actually get slower
 
 icc_results <- icc(model_3)
 
-print(icc_results) # 13% of the total variance is explained by the Random effects  
+print(icc_results) # 22% of the total variance is explained by the Random effects  
 
 r2_results <- r2(model_3)
 
 print(r2_results) # 30% of the total variance is explained by the fixed effects
 
-# In total the model acocunts for 43% of the variance
+# In total the model acocunts for 51% of the variance
 
 
 plot(model_3, which = 1, main = "Residuals vs Fitted")
 qqnorm(residuals(model_3))
 qqline(residuals(model_3), col = "red")
+# Assumptions checked, residuals are normally distributed
 
 pet_re <- ranef(model_3)$PET[,1]
 qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
 qqline(pet_re, col = "red")
 
+# limit of this model is: 
+# removing zeros is CONCEPTUALLY WRONG 
+# as they are not MCAR (missing completely at random)
+# this causes SELECTION BIAS
 
-## test with time = 0 substituted with number of characters / 20
-
+#######################################
+# Model building - dataset with 0 time instances substituted with number of characters/20
+#######################################
+# Under the assumption a professional translator takes around 1 second to make sure 
+# 20 characters contain no errors and should not be edited
 
 data_impute <- data
 data_impute$time_fixed <- ifelse(data_impute$time == 0, data_impute$num_characters / 20, data_impute$time)
-View(data_impute)
+View(data_impute[data_impute$time == 0,])
 
 model_fixed <- lmer(log(time_fixed) ~ 
                       condition * domain + num_characters + 
                       num_minor + num_major + MT_Quality + 
-                      (1 | PET) + (1 | text_name), 
+                      (1 | PET) + (1 | text_name : Sent_id), 
                     data = data_impute, REML = TRUE)
 
 summary(model_fixed)
+# Condition 2 effect is statistically significant in medical domain
+# and lowers elapsed time by 27% compared to baseline
+
+eff_int <- predict_response(model_fixed, terms = c("condition", "domain"))
+
+plot(eff_int) + 
+  labs(
+    title = "Predicted Translation Time by Condition and Domain",
+    subtitle = "Values back-transformed from Log to Seconds",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+plot_model(model_fixed, 
+           type = "est", 
+           show.values = TRUE, 
+           value.offset = .3,
+           title = "Fixed Effects Estimates (Log Scale)")
 
 icc_results1 <- icc(model_fixed)
 
-print(icc_results1) 
+print(icc_results1) # Random effects account for 18% of total variance
 
 r2_results1 <- r2(model_fixed)
 
-print(r2_results1) 
+print(r2_results1) # 31% of total variance comes from fixed effects
+# R2 is 49%
 
 plot(model_fixed, which = 1, main = "Residuals vs Fitted")
 qqnorm(residuals(model_fixed))
 qqline(residuals(model_fixed), col = "red")
+# Clear lower tail, the model overestimates lower times
+# But generally acceptable diagnostics
 
 pet_re <- ranef(model_fixed)$PET[,1]
 qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
 qqline(pet_re, col = "red")
+random_effects <- ranef(model_fixed)
+plot_model(model_fixed, type = "re", grid = FALSE)[[2]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: PET (Translators)")
+plot_model(model_fixed, type = "re", grid = FALSE)[[1]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: text_name")
+
+data_impute$condition <- relevel(as.factor(data_impute$condition), ref = "2")
+model_fixed <- lmer(log(time_fixed) ~ 
+                      condition * domain + num_characters + 
+                      num_minor + num_major + MT_Quality + 
+                      (1 | PET) + (1 | text_name : Sent_id), 
+                    data = data_impute, REML = TRUE)
+
+summary(model_fixed)
 
 
-# Model with new time observations
+#######################################
+# Model building - dataset with instances with time = 0 substituted with newly proposed times
+#######################################
 
 data_time <- read_csv("data/data_time.csv")
 View(data_time)
@@ -207,7 +280,7 @@ data_clean2 <- data[data$time_hybrid>1,]
 
 model_hyb <- lmer(log(time_hybrid) ~ 
                      condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
-                     (1 | PET) + (1 | text_name) + (1 | Sent_id), 
+                     (1 | PET) + (1 | text_name / Sent_id), 
                    data = data_clean2, 
                    REML = FALSE)
 
@@ -215,7 +288,7 @@ summary(model_hyb)
 
 model_hyb2 <- lmer(log(time_hybrid) ~ 
                   condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                  (1 | PET) + (1 | text_name), 
+                  (1 | PET) + (1 | text_name : Sent_id), 
                 data = data_clean2, 
                 REML = FALSE)
 
@@ -224,24 +297,67 @@ summary(model_hyb2)
 
 model_hyb3 <- lmer(log(time_hybrid) ~ 
                   condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                  (1 | PET), 
+                  (1 | PET) + (1 | text_name : Sent_id), 
                 data = data_clean2, 
                 REML = TRUE)
 summary(model_hyb3)
+# In medical texts all condition effects are statistically relevant compared to the baseline
+# Condition 2 reduces time by 40.6% in medical texts
+# condition 3 by 31.1% in medical texts
+# condition 4 by 27.5% in medical and news texts
 
-icc_results2 <- icc(model_hyb3)
+eff_int_hyb <- predict_response(model_hyb3, terms = c("condition", "domain"))
+plot(eff_int_hyb) + 
+  labs(
+    title = "Predicted Translation Time by Condition and Domain",
+    subtitle = "Values back-transformed from Log to Seconds",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
 
-print(icc_results2) 
+plot_model(model_hyb3, 
+           type = "est", 
+           show.values = TRUE, 
+           value.offset = .3,
+           title = "Fixed Effects Estimates (Log Scale)")
 
-r2_results2 <- r2(model_hyb3)
+
+icc_results2 <- icc(model_hyb3) 
+
+print(icc_results2) #random part accounts for 21% of total variance
+
+r2_results2 <- r2(model_hyb3) # fixed effects are 28% of total variance
 
 print(r2_results2) 
+# R2 is 49%
 
 plot(model_hyb3, which = 1, main = "Residuals vs Fitted")
 qqnorm(residuals(model_hyb3))
 qqline(residuals(model_hyb3), col = "red")
+# residuals are normally distributed
 
-pet_re1 <- ranef(model_hyb3)$PET[,1]
-qqnorm(pet_re1, main = "Q-Q Plot: Random Effects (PET)")
-qqline(pet_re1, col = "red")
+pet_re <- ranef(model_hyb3)$PET[,1]
+qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
+qqline(pet_re, col = "red")
+random_effects <- ranef(model_hyb3)
+plot_model(model_hyb3, type = "re", grid = FALSE)[[2]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: PET (Translators)")
+plot_model(model_hyb3, type = "re", grid = FALSE)[[1]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: sentence ID")
+
+# Limit of this analysis is that the newly imputed times are measured differently than the originals
+# they may be affected by external factors, such as translator taking breaks, and 
+# longer time to actually start the task
+
+data_clean2$condition <- relevel(as.factor(data_clean2$condition), ref = "2")
+model_hyb3 <- lmer(log(time_hybrid) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                     (1 | PET)+ (1 | text_name : Sent_id), 
+                   data = data_clean2, 
+                   REML = TRUE)
+summary(model_hyb3)
 
