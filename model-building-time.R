@@ -237,11 +237,28 @@ r2_results1 <- r2(model_fixed)
 print(r2_results1) # 31% of total variance comes from fixed effects
 # R2 is 49%
 
-plot(model_fixed, which = 1, main = "Residuals vs Fitted")
-qqnorm(residuals(model_fixed))
-qqline(residuals(model_fixed), col = "red")
-# Clear lower tail, the model overestimates lower times
-# But generally acceptable diagnostics
+diag_data <- data.frame(
+  Fitted = fitted(model_fixed),
+  Residuals = residuals(model_fixed)
+)
+
+d1 <- ggplot(diag_data, aes(x = Fitted, y = Residuals)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Residuals vs Fitted",
+       x = "Fitted Values",
+       y = "Residuals") +
+  theme_minimal()
+
+d2 <- ggplot(diag_data, aes(sample = Residuals)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "Normal Q-Q Plot",
+       x = "Theoretical Quantiles",
+       y = "Sample Quantiles") +
+  theme_minimal()
+
+d1+d2
 
 pet_re <- ranef(model_fixed)$PET[,1]
 qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
@@ -333,9 +350,28 @@ r2_results2 <- r2(model_hyb3) # fixed effects are 28% of total variance
 print(r2_results2) 
 # R2 is 49%
 
-plot(model_hyb3, which = 1, main = "Residuals vs Fitted")
-qqnorm(residuals(model_hyb3))
-qqline(residuals(model_hyb3), col = "red")
+diag_data <- data.frame(
+  Fitted = fitted(model_hyb3),
+  Residuals = residuals(model_hyb3)
+)
+
+d1 <- ggplot(diag_data, aes(x = Fitted, y = Residuals)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Residuals vs Fitted",
+       x = "Fitted Values",
+       y = "Residuals") +
+  theme_minimal()
+
+d2 <- ggplot(diag_data, aes(sample = Residuals)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "Normal Q-Q Plot",
+       x = "Theoretical Quantiles",
+       y = "Sample Quantiles") +
+  theme_minimal()
+
+d1+d2
 # residuals are normally distributed
 
 pet_re <- ranef(model_hyb3)$PET[,1]
@@ -376,3 +412,39 @@ summary(model_hyb3)
 #  control = glmmTMBControl(optimizer = optim, 
 #                           optArgs = list(method = "BFGS"))
 #)
+
+
+#
+
+# Grafico 1 - Option 1
+p11 <- plot(eff_int) + 
+  labs(
+    title = "Option 1: Min Threshold",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+# Grafico 2 - Option 2
+p22 <- plot(eff_int_hyb) + 
+  labs(
+    title = "Option 2: Screen Time",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+# Uniamo con patchwork
+combined_plot <- p11 + p22 + 
+  plot_layout(guides = "collect") + # Unifica la legenda
+  plot_annotation(
+    title = "Predicted Translation Time: Comparison of Imputation Scenarios",
+    subtitle = "Values back-transformed from Log to Seconds",
+    tag_levels = 'a', # Aggiunge (a) e (b) in automatico
+    tag_prefix = '(',
+    tag_suffix = ')'
+  ) & 
+  theme(legend.position = "right") # Forza la legenda a destra per entrambi
+
