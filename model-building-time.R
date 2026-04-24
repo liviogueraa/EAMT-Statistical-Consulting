@@ -361,3 +361,18 @@ model_hyb3 <- lmer(log(time_hybrid) ~
                    REML = TRUE)
 summary(model_hyb3)
 
+
+#####################
+#library(glmmTMB)
+#library(DHARMa)
+
+#data_clean2$productivity <- data_clean2$keystrokes / data_clean2$time_hybrid
+
+#model_prod <- glmmTMB(
+#  productivity+1 ~ condition * domain + MT_Quality + 
+#    (1 | PET)+ (1 | text_name : Sent_id), 
+#  data = data_clean2,
+#  family = tweedie(link = "log"),
+#  control = glmmTMBControl(optimizer = optim, 
+#                           optArgs = list(method = "BFGS"))
+#)
