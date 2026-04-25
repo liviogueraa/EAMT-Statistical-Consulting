@@ -416,10 +416,12 @@ summary(model_hyb3)
 
 #
 
-labels_x <- c("1" = "PE", "2" = "H-QE", "3" = "H-APE", "4" = "S-APE")
+my_colors <- c("medical" = "#2c3e50", "news" = "#e67e22") # Blu notte e Arancione
+my_labels <- c("PE", "H-QE", "H-APE", "S-APE")
 
 p11 <- plot(eff_int) + 
-  scale_x_discrete(labels = labels_x) +
+  scale_x_continuous(breaks = 1:4, labels = my_labels) + 
+  scale_color_manual(values = my_colors) + 
   labs(
     title = "Option 1: Min Threshold",
     x = "Condition", 
@@ -429,7 +431,8 @@ p11 <- plot(eff_int) +
   theme_minimal()
 
 p22 <- plot(eff_int_hyb) + 
-  scale_x_discrete(labels = labels_x) + 
+  scale_x_continuous(breaks = 1:4, labels = my_labels) + 
+  scale_color_manual(values = my_colors) + 
   labs(
     title = "Option 2: Screen Time",
     x = "Condition", 
@@ -447,4 +450,9 @@ combined_plot <- p11 + p22 +
     tag_prefix = '(',
     tag_suffix = ')'
   ) & 
-  theme(legend.position = "right")
+  theme(
+    legend.position = "right",
+    plot.title = element_text(face = "bold")
+  )
+
+combined_plot
