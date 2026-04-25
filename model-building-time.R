@@ -269,7 +269,7 @@ plot_model(model_fixed, type = "re", grid = FALSE)[[2]] +
   labs(title = "Random Effects: PET (Translators)")
 plot_model(model_fixed, type = "re", grid = FALSE)[[1]] + 
   theme_minimal() +
-  labs(title = "Random Effects: text_name")
+  labs(title = "Random Effects: Sentence ID")
 
 data_impute$condition <- relevel(as.factor(data_impute$condition), ref = "2")
 model_fixed <- lmer(log(time_fixed) ~ 
@@ -383,7 +383,7 @@ plot_model(model_hyb3, type = "re", grid = FALSE)[[2]] +
   labs(title = "Random Effects: PET (Translators)")
 plot_model(model_hyb3, type = "re", grid = FALSE)[[1]] + 
   theme_minimal() +
-  labs(title = "Random Effects: sentence ID")
+  labs(title = "Random Effects: Sentence ID")
 
 # Limit of this analysis is that the newly imputed times are measured differently than the originals
 # they may be affected by external factors, such as translator taking breaks, and 
@@ -416,8 +416,10 @@ summary(model_hyb3)
 
 #
 
-# Grafico 1 - Option 1
+labels_x <- c("1" = "PE", "2" = "H-QE", "3" = "H-APE", "4" = "S-APE")
+
 p11 <- plot(eff_int) + 
+  scale_x_discrete(labels = labels_x) +
   labs(
     title = "Option 1: Min Threshold",
     x = "Condition", 
@@ -426,8 +428,8 @@ p11 <- plot(eff_int) +
   ) +
   theme_minimal()
 
-# Grafico 2 - Option 2
 p22 <- plot(eff_int_hyb) + 
+  scale_x_discrete(labels = labels_x) + 
   labs(
     title = "Option 2: Screen Time",
     x = "Condition", 
@@ -436,15 +438,13 @@ p22 <- plot(eff_int_hyb) +
   ) +
   theme_minimal()
 
-# Uniamo con patchwork
 combined_plot <- p11 + p22 + 
-  plot_layout(guides = "collect") + # Unifica la legenda
+  plot_layout(guides = "collect") + 
   plot_annotation(
     title = "Predicted Translation Time: Comparison of Imputation Scenarios",
     subtitle = "Values back-transformed from Log to Seconds",
-    tag_levels = 'a', # Aggiunge (a) e (b) in automatico
+    tag_levels = 'a', 
     tag_prefix = '(',
     tag_suffix = ')'
   ) & 
-  theme(legend.position = "right") # Forza la legenda a destra per entrambi
-
+  theme(legend.position = "right")
