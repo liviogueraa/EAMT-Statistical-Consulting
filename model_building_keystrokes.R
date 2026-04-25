@@ -341,7 +341,8 @@ summary(reduced_model)
 reduced_model_noDiff <- update(reduced_model, . ~ . - scale(Difficulty))
 
 res <- simulateResiduals(reduced_model_noDiff)
-plot(res)
+plot(res)+
+  labs(title = "Diagnostics plots - Keystrokes")
 # now it works
 
 summary(reduced_model_noDiff)
@@ -355,7 +356,7 @@ summary(reduced_model_noDiff)
 
 #### Thus, the final model is reduced_model_noDiff ####
 
-plot_model(reduced_model_noDiff, type = "re")
+#plot_model(reduced_model_noDiff, type = "re")
 
 
 library(ggplot2)
@@ -418,16 +419,21 @@ df <- df %>%
   mutate(term = factor(term, levels = rev(term)))
 
 # plot
+
 p <- ggplot(df, aes(x = estimate, y = term)) +
   geom_vline(xintercept = 0, linetype = "dashed", linewidth = 0.6, color = "gray50") +
   
   geom_errorbarh(aes(xmin = conf.low, xmax = conf.high),
                  height = 0.2, linewidth = 0.8, color = "gray40") +
+
+  geom_point(aes(shape = as.factor(!significant_flag)),
+             size = 3, stroke = 1.1, color = "black") +
   
-  geom_point(aes(shape = significant_flag),
-             size = 3, stroke = 1.1, color = "black", fill = "white") +
-  
-  scale_shape_manual(values = c(1, 16), guide = "none") +
+  scale_shape_manual(
+    name = NULL,              
+    values = c(16, 1),        
+    labels = c("Significant", "Not Significant") 
+  ) +
   
   labs(
     title = "Effects on Keystrokes",
@@ -445,11 +451,13 @@ p <- ggplot(df, aes(x = estimate, y = term)) +
     panel.grid.major.y = element_blank(),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_line(color = "gray85"),
-    plot.margin = margin(10, 15, 10, 10)
+    plot.margin = margin(10, 15, 10, 10),
+    legend.position = "right"
   )
 
-# display
 p
+
+
 
 # save 
 ggsave(
@@ -461,12 +469,12 @@ ggsave(
 )
 
 
-#### random interceptsplots ####
+#### random intercepts plots ####
 library(ggplot2)
 library(glmmTMB)
 library(sjPlot)
 # Use the specific sjPlot function
-sjPlot::plot_model(reduced_model_noDiff, type = "re", grid = FALSE)[[3]]+
+sjPlot::plot_model(reduced_model_noDiff, type = "re", grid = FALSE)[[2]]+
   theme_minimal()+
   labs(x = "Text", y= "Random Intercept", title = "Random Effects: Texts")
 
