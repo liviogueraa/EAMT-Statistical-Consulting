@@ -396,9 +396,9 @@ df <- df %>%
 df <- df %>%
   mutate(
     term = recode(term,
-                  "condition2" = "Condition 2",
-                  "condition3" = "Condition 3",
-                  "condition4" = "Condition 4",
+                  "condition2" = "H-QE",
+                  "condition3" = "H-APE",
+                  "condition4" = "S-APE",
                   "domainnews" = "Domain: News",
                   "scale(num_characters)" = "Text length",
                   "scale(num_minor)" = "Minor errors",
