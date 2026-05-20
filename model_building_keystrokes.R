@@ -62,7 +62,6 @@ data$`How accurate were the translation suggestions?` <- factor(
 )
 
 
-#str(data)
 data$PET <- as.factor(data$PET)
 data$condition <- as.factor(data$condition)
 data$domain <- as.factor(data$domain)

@@ -1,0 +1,396 @@
+---
+title: "Keystrokes_clean code"
+author: "Andrea Camasta"
+date: "2026-05-20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Modelling Keystrokes
+
+## Loading the dataset and the required packages
+
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(see)
+library(patchwork)
+library(lme4)
+
+data <- read_csv("data/data.csv")
+```
+
+
+## Factorization and Ordering of categorical variables
+
+```{r}
+data$`How good was the quality of MT?` <- factor(
+  data$`How good was the quality of MT?`, 
+  levels = c("Insufficient", "Fair", "Good", "Very good"),
+  ordered = TRUE
+)
+
+data$`How difficult to translate was the source text?` <- factor(
+  data$`How difficult to translate was the source text?`, 
+  levels = c("Very difficult", "Somewhat difficult", "Neutral",
+             "Somewhat easy", "Very easy"),
+  ordered = TRUE
+)
+
+data$`How useful were the error annotations?` <- factor(
+  data$`How useful were the error annotations?`, 
+  levels = c("nan", "Extremely not useful", "Somewhat not useful",
+             "Neutral", "Somewhat useful", "Extremely useful"),
+  ordered = TRUE
+)
+
+data$`How useful were the error annotations?` <- factor(
+  data$`How useful were the error annotations?`, 
+  levels = c("nan", "Extremely not useful", "Somewhat not useful",
+             "Neutral", "Somewhat useful", "Extremely useful"),
+  ordered = TRUE
+)
+
+data$`How accurate were the error annotations?` <- factor(
+  data$`How accurate were the error annotations?`, 
+  levels = c("nan", "Somewhat inaccurate", "Not accurate nor inaccurate",
+             "Somewhat accurate"),
+  ordered = TRUE
+)
+
+data$`How useful were the translation suggestions?` <- factor(
+  data$`How useful were the translation suggestions?`, 
+  levels = c("nan", "Neutral", "Somewhat useful",
+             "Extremely useful"),
+  ordered = TRUE
+)
+
+data$`How accurate were the translation suggestions?` <- factor(
+  data$`How accurate were the translation suggestions?`, 
+  levels = c("nan", "Somewhat inaccurate", "Not accurate nor inaccurate",
+             "Somewhat accurate", "Very accurate"),
+  ordered = TRUE
+)
+
+
+data$PET <- as.factor(data$PET)
+data$condition <- as.factor(data$condition)
+data$domain <- as.factor(data$domain)
+data$text_name <- as.factor(data$text_name)
+data$Sent_id <- as.factor(data$Sent_id)
+
+data$MT_Quality <- as.numeric(data$`How good was the quality of MT?`)
+data$Difficulty <- as.numeric(data$`How difficult to translate was the source text?`)
+data$condition <- factor(data$condition)
+```
+
+
+## Y variable Distribution
+
+# raw data
+ggplot(data, aes(x = keystrokes)) +
+  geom_histogram(aes(y = ..density..),
+                 bins = 30,
+                 fill = "lightblue",
+                 color = "black") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Distribution of Keystrokes",
+       x = "Keystrokes",
+       y = "Density")
+
+
+
+## Tweedie GLMM 
+
+# The Tweedie distribution is a member of the Exponential Dispersion Family. Here, it is specifically a 
+# Compound Poisson-Gamma distribution
+
+# It acts as a single mathematical framework that handles two processes at once:
+# 1) The Discrete Part (Poisson) models the probability of an event occurring (e.g., whether the 
+#  translator chooses to edit the sentence or leave it at 0 keystrokes);
+# The Continuous Part (Gamma) models the magnitude of the event (e.g., if they do edit, how many keystrokes are required)
+
+
+
+library(glmmTMB)
+full_model <- glmmTMB(keystrokes ~ condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                   (1 | PET) + (1 | text_name) + (1 | Sent_id), 
+                 family = tweedie(), data = data, REML = FALSE)
+summary(full_model)
+
+full_model$sdr$pdHess
+
+
+library(DHARMa)
+res <- simulateResiduals(full_model)
+plot(res)
+
+# A more simplified model
+refined_model <- glmmTMB(keystrokes ~ condition * domain + 
+                             num_characters + num_minor + num_major + 
+                             MT_Quality + Difficulty + 
+                             (1 | PET) + (1 | text_name), 
+                           family = tweedie(), 
+                           data = data)
+
+summary(refined_model)
+
+
+library(glmmTMB)
+
+# 1. Scale variables to get numerical stability
+final_recovery_model <- glmmTMB(
+  keystrokes ~ condition * domain + 
+    scale(num_characters) + 
+    scale(num_minor) + 
+    scale(num_major) + 
+    scale(MT_Quality) + 
+    scale(Difficulty) + 
+    (1 | PET) +
+    (1 | text_name / Sent_id),       
+  family = tweedie(), 
+  data = data
+)
+
+# 2. Check stability
+library(DHARMa)
+final_recovery_model$sdr$pdHess
+res <- simulateResiduals(final_recovery_model)
+plot(res)
+
+summary(final_recovery_model)
+
+
+
+#### visualising random intercepts ####
+library(glmmTMB)
+library(sjPlot)
+
+plot_model(final_recovery_model, type = "re")
+
+
+
+
+#### Simplifying the model to make residuals homoschedastic
+# Creating the simplified version: no interaction term
+reduced_model <- update(final_recovery_model, . ~ . - condition:domain)
+
+# Compare them
+anova(final_recovery_model, reduced_model)
+# no significant differences in predictive power and AIC and BIC are lower, we keep the reduced
+
+# Check Variance Inflation Factors
+performance::check_collinearity(final_recovery_model) # since the full model has interaction terms. VIFs might be affected
+performance::check_collinearity(reduced_model) # here no highly correlated variables
+
+
+# 2. Check stability
+library(DHARMa)
+final_recovery_model$sdr$pdHess
+res <- simulateResiduals(reduced_model)
+plot(res)
+
+
+# Let's try to simplify some more
+summary(reduced_model)
+
+
+# no Difficulty term
+reduced_model_noDiff <- update(reduced_model, . ~ . - scale(Difficulty))
+
+res <- simulateResiduals(reduced_model_noDiff)
+plot(res)+
+  labs(title = "Diagnostics plots - Keystrokes")
+# now it works
+
+summary(reduced_model_noDiff)
+
+
+# Compare them
+anova(reduced_model, reduced_model_noDiff)
+# clear indication to stick with the second reduced model (no difficulty)
+
+summary(reduced_model_noDiff)
+
+#### Thus, the final model is reduced_model_noDiff
+
+# Plotting the regressors' effects on keystrokes
+
+library(ggplot2)
+library(dplyr)
+
+# extract fixed effects table
+coefs <- summary(reduced_model_noDiff)$coefficients$cond
+df <- as.data.frame(coefs)
+
+# add term names
+df$term <- rownames(df)
+
+# rename columns for convenience
+df <- df %>%
+  rename(
+    estimate = Estimate,
+    std.error = `Std. Error`,
+    p.value = `Pr(>|z|)`
+  )
+
+# get confidence intervals
+ci <- confint(reduced_model_noDiff, method = "Wald")
+
+# keep only fixed effects
+ci <- as.data.frame(ci)
+ci$term <- rownames(ci)
+
+df <- df %>%
+  left_join(ci, by = "term") %>%
+  rename(conf.low = `2.5 %`, conf.high = `97.5 %`)
+
+# remove intercept
+df <- df %>%
+  filter(term != "(Intercept)")
+
+# relabel terms
+df <- df %>%
+  mutate(
+    term = recode(term,
+                  "condition2" = "H-QE",
+                  "condition3" = "H-APE",
+                  "condition4" = "S-APE",
+                  "domainnews" = "Domain: News",
+                  "scale(num_characters)" = "Text length",
+                  "scale(num_minor)" = "Minor errors",
+                  "scale(num_major)" = "Major errors",
+                  "scale(MT_Quality)" = "MT quality"
+    ),
+    significance = ifelse(p.value < 0.05, "Significant", "Not significant")
+  )
+
+library(ggplot2)
+library(dplyr)
+library(forcats)
+
+# reorder by significance first, then by effect size
+df <- df %>%
+  mutate(significant_flag = p.value < 0.05) %>%
+  arrange(desc(significant_flag), desc(abs(estimate))) %>%
+  mutate(term = factor(term, levels = rev(term)))
+
+# plot
+
+p <- ggplot(df, aes(x = estimate, y = term)) +
+  geom_vline(xintercept = 0, linetype = "dashed", linewidth = 0.6, color = "gray50") +
+  
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high),
+                 height = 0.2, linewidth = 0.8, color = "gray40") +
+
+  geom_point(aes(shape = as.factor(!significant_flag)),
+             size = 3, stroke = 1.1, color = "black") +
+  
+  scale_shape_manual(
+    name = NULL,              
+    values = c(16, 1),        
+    labels = c("Significant", "Not Significant") 
+  ) +
+  
+  labs(
+    title = "Effects on Keystrokes",
+    subtitle = "Estimates with 95% confidence intervals (log scale)",
+    x = "Effect size",
+    y = NULL
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "gray30"),
+    axis.text.y = element_text(size = 11),
+    axis.text.x = element_text(size = 10),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_line(color = "gray85"),
+    plot.margin = margin(10, 15, 10, 10),
+    legend.position = "right"
+  )
+
+p
+
+
+
+# save 
+#ggsave(
+#  filename = "keystrokes_effects_plot.png",
+#  plot = p,
+#  width = 7,
+#  height = 4.5,
+# dpi = 300
+#)
+
+
+#### random intercepts plots 
+library(ggplot2)
+library(glmmTMB)
+library(sjPlot)
+
+sjPlot::plot_model(reduced_model_noDiff, type = "re", grid = FALSE)[[2]]+
+  theme_minimal()+
+  labs(x = "Text", y= "Random Intercept", title = "Random Effects: Texts")
+
+
+
+
+#### Comparing final model Vs other models
+
+# Definin main formula
+main_formula <- keystrokes ~ condition + domain + scale(num_characters) + 
+  scale(num_minor) + scale(num_major) + scale(MT_Quality) + 
+  (1 | PET) + (1 | text_name / Sent_id)
+
+
+
+# Current Tweedie Model
+mod_tweedie <- glmmTMB(main_formula, 
+                       family = tweedie(link = "log"), 
+                       data = data)
+
+
+# Zero-Inflated Negative Binomial
+# (Assumes some zeros come from a separate always-zero process)
+mod_zinb <- glmmTMB(main_formula, 
+                    ziformula = ~1, 
+                    family = nbinom2, 
+                    data = data)
+
+# 3. Hurdle Model (Truncated Negative Binomial)
+# (Assumes a process: 0 vs >0, then counts for the rest)
+mod_hurdle <- glmmTMB(main_formula, 
+                      ziformula = ~., 
+                      family = truncated_nbinom2, 
+                      data = data)
+
+library(performance)
+
+# Compare them side-by-side
+comparison <- compare_performance(mod_tweedie, mod_zinb, mod_hurdle, metrics = "common")
+print(comparison)
+
+
+# The 'rho' (power parameter)
+glmmTMB::family_params(mod_tweedie)
+
+# Even though the Hurdle model has a slightly lower AIC, 
+# We would argue for the Tweedie model for three reasons:
+# 1) The BIC weight for the Tweedie model is >.999. This is a massive statistical signal that the Tweedie model
+# is the most parsimonious. 
+# 2) The Tweedie model has the lowest RMSE (31.539). This means its actual predictions are closer to actual data points
+# than the other two models.
+# 3) In the Tweedie model, the Itra Class Correlation (ICC) is 0.548, while in the ZI model, it's 0.956, which is
+# high and might suggests that the model is struggling to separate the random effects from the zero-inflation logic.
+
+# For the Marginal R^2 (0.191): Fixed effects (condition, length, quality, etc.) explain about 19.1% of the variance 
+# in keystrokes. 
+# For Conditional R^2 (0.634): Adding the random part we are explaining nearly 64% of the variance.
