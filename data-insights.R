@@ -355,25 +355,25 @@ p4 <- ggplot(plot_data, aes(x = num_characters, y = log_keystrokes)) +
 # Number of major and Minor errors compared to time and Keystrokes
 #
 
-# 1. Time vs Highlight Ratio
+# 1. Time vs Major Errors
 p11 <- ggplot(plot_data, aes(x = num_major, y = log_time)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
   theme_minimal() + labs(title = "Time vs Major Errors", x = "Num of Minor Errors", y = "log(Time)")
 
-# 2. Keystrokes vs Highlight Ratio
+# 2. Keystrokes vs Major Errors
 p12 <- ggplot(plot_data, aes(x = num_major, y = log_keystrokes)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
   theme_minimal() + labs(title = "Keystrokes vs Major Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
 
-# 3. Time vs Num Characters
+# 3. Time vs Minor Errors
 p13 <- ggplot(plot_data, aes(x = num_minor, y = log_time)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
   theme_minimal() + labs(title = "Time vs Minor Errors", x = "Num of Minor Errors", y = "log(Time)")
 
-# 4. Keystrokes vs Num Characters
+# 4. Keystrokes vs Minor Errors
 p14 <- ggplot(plot_data, aes(x = num_minor, y = log_keystrokes)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +

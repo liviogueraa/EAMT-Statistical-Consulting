@@ -69,6 +69,7 @@ model_full <- lmer(log(time+1) ~
                    REML = FALSE)
 
 summary(model_full)
+# Singular Fit, must simplify the random part
 
 model_2 <- lmer(log(time+1) ~ 
                   condition * domain + num_characters + num_minor + num_major + MT_Quality + 
@@ -77,8 +78,6 @@ model_2 <- lmer(log(time+1) ~
                 REML = FALSE)
 
 summary(model_2)
-
-anova(model_full, model_2)
 
 model_2.1 <- lmer(log(time+1) ~ 
                   condition * domain + num_characters + MT_Quality + 
@@ -96,34 +95,8 @@ model_3 <- lmer(log(time+1) ~
                 data = data, 
                 REML = TRUE)
 summary(model_3)  
-# None of the condition effects are statistically relevant
-# only one close is condition 2 in medical texts, whose interval is almost all 
-# below 0
 
-eff_int_raw <- predict_response(model_3, terms = c("condition", "domain"))
-plot(eff_int_raw) + 
-  labs(
-    title = "Predicted Translation Time by Condition and Domain",
-    subtitle = "Values back-transformed from Log to Seconds",
-    x = "Condition", 
-    y = "Estimated Time (Seconds)",
-    colour = "Domain"
-  ) +
-  theme_minimal()
 
-plot_model(model_3, 
-           type = "est", 
-           show.values = TRUE, 
-           value.offset = .3,
-           title = "Fixed Effects Estimates (Log Scale)")
-
-icc_results <- icc(model_3)
-
-print(icc_results) 
-
-r2_results <- r2(model_3)
-
-print(r2_results) 
 
 plot(model_3, which = 1, main = "Residuals vs Fitted") 
 # There is a systematic pattern of errors due to the presence of time = 0 observations
@@ -142,7 +115,7 @@ qqline(residuals(model_3), col = "red")
 
 model_full <- lmer(log(time+1) ~ 
                      condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
-                     (1 | PET) + (1 | text_name : Sent_id), 
+                     (1 | PET) + (1 | text_name / Sent_id), 
                    data = data_clean, 
                    REML = FALSE)
 
@@ -150,7 +123,7 @@ summary(model_full)
 
 model_2 <- lmer(log(time+1) ~ 
                      condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                     (1 | PET) + (1 | text_name : Sent_id), 
+                     (1 | PET) + (1 | text_name / Sent_id), 
                    data = data_clean, 
                    REML = FALSE)
 
@@ -160,30 +133,17 @@ anova(model_full, model_2)
 
 model_3 <- lmer(log(time+1) ~ 
                   condition * domain + num_characters + num_minor + num_major + MT_Quality + 
-                  (1 | PET) + (1 | text_name : Sent_id), 
+                  (1 | PET) + (1 | text_name / Sent_id), 
                 data = data_clean, 
                 REML = TRUE)
 summary(model_3)  
 
-icc_results <- icc(model_3)
-
-print(icc_results) # 22% of the total variance is explained by the Random effects  
-
-r2_results <- r2(model_3)
-
-print(r2_results) # 30% of the total variance is explained by the fixed effects
-
-# In total the model acocunts for 51% of the variance
 
 
 plot(model_3, which = 1, main = "Residuals vs Fitted")
 qqnorm(residuals(model_3))
 qqline(residuals(model_3), col = "red")
 # Assumptions checked, residuals are normally distributed
-
-pet_re <- ranef(model_3)$PET[,1]
-qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
-qqline(pet_re, col = "red")
 
 # limit of this model is: 
 # removing zeros is CONCEPTUALLY WRONG 
@@ -456,3 +416,5 @@ combined_plot <- p11 + p22 +
   )
 
 combined_plot
+
+

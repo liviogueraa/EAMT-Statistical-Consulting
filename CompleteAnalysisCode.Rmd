@@ -1,0 +1,1146 @@
+---
+title: "Data Analysis - EAMT Statistical Consulting"
+author: "Andrea Camasta, Livio Guerra"
+date: "2026-03-07"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Loading Required Packages and Dataset
+
+```{r}
+# Required Packages
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(see)
+library(patchwork)
+library(lme4)
+library(lmerTest)
+library(lattice)
+library(sjPlot)  
+library(mice)
+library(performance)
+library(ggeffects)
+library(glmmTMB)
+library(DHARMa)
+library(forcats)
+
+# Loading dataset
+data <- read_csv("data/data.csv")
+```
+
+# Data Wrangling
+
+```{r}
+# Factorization and Ordering of Categorical Variables 
+
+data$`How good was the quality of MT?` <- factor(
+  data$`How good was the quality of MT?`, 
+  levels = c("Insufficient", "Fair", "Good", "Very good"),
+  ordered = TRUE
+)
+
+data$`How difficult to translate was the source text?` <- factor(
+  data$`How difficult to translate was the source text?`, 
+  levels = c("Very difficult", "Somewhat difficult", "Neutral",
+             "Somewhat easy", "Very easy"),
+  ordered = TRUE
+)
+
+data$`How useful were the error annotations?` <- factor(
+  data$`How useful were the error annotations?`, 
+  levels = c("nan", "Extremely not useful", "Somewhat not useful",
+             "Neutral", "Somewhat useful", "Extremely useful"),
+  ordered = TRUE
+)
+
+data$`How useful were the error annotations?` <- factor(
+  data$`How useful were the error annotations?`, 
+  levels = c("nan", "Extremely not useful", "Somewhat not useful",
+             "Neutral", "Somewhat useful", "Extremely useful"),
+  ordered = TRUE
+)
+
+data$`How accurate were the error annotations?` <- factor(
+  data$`How accurate were the error annotations?`, 
+  levels = c("nan", "Somewhat inaccurate", "Not accurate nor inaccurate",
+             "Somewhat accurate"),
+  ordered = TRUE
+)
+
+data$`How useful were the translation suggestions?` <- factor(
+  data$`How useful were the translation suggestions?`, 
+  levels = c("nan", "Neutral", "Somewhat useful",
+             "Extremely useful"),
+  ordered = TRUE
+)
+
+data$`How accurate were the translation suggestions?` <- factor(
+  data$`How accurate were the translation suggestions?`, 
+  levels = c("nan", "Somewhat inaccurate", "Not accurate nor inaccurate",
+             "Somewhat accurate", "Very accurate"),
+  ordered = TRUE
+)
+
+# Creating tables per variable
+data_categorical <- data[,-c(7,8,9,10,11,12,13)]
+lapply(data_categorical[,-7], table)
+
+data$PET <- as.factor(data$PET)
+data$condition <- as.factor(data$condition)
+data$domain <- as.factor(data$domain)
+data$text_name <- as.factor(data$text_name)
+data$Sent_id <- as.factor(data$Sent_id)
+
+data$MT_Quality <- as.numeric(data$`How good was the quality of MT?`)
+data$Difficulty <- as.numeric(data$`How difficult to translate was the source text?`)
+
+data[data == "N/A"] <- NA
+```
+
+# Tables For Insights
+
+```{r}
+table(data$condition, data$text_name)
+
+table(data$PET, data$`How accurate were the translation suggestions?`)
+
+table(data$PET, data$`How useful were the translation suggestions?`)
+
+table(data$PET, data$`How good was the quality of MT?`)
+
+table(data$`How good was the quality of MT?`, data$condition)
+
+table(data$text_name, data$`How good was the quality of MT?`)
+
+data %>%
+  group_by(`How good was the quality of MT?`) %>%
+  summarise(mean_time = mean(time, na.rm = TRUE),
+            mean_keys = mean(keystrokes, na.rm = TRUE),
+            n = n())
+
+data %>%
+  mutate(prc_sugg_accepted = as.numeric(as.character(prc_sugg_accepted))) %>%
+  group_by(condition) %>%
+  summarise(mean_time = mean(time),
+            mean_keys = mean(keystrokes),
+            mean_prc_sugg_acc = mean(prc_sugg_accepted, na.rm = TRUE),
+            n = n())
+
+
+
+
+table(data$condition, data$`How difficult to translate was the source text?`)
+
+table(data$condition, data$num_major)
+table(data$condition, data$num_minor)
+```
+
+# Figures
+### Boxplots of Keystrokes and Time per Condition
+
+```{r}
+timebp <- ggplot(data = data, mapping = aes(x = as.factor(condition),
+                                            y = time, fill = as.factor(condition))) + 
+  geom_boxplot() +
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) +
+  labs(title = "Temporal Efficiency per Condition",
+       x = "Condition",
+       y = "Time (seconds)") +
+  theme(legend.position = "none")
+
+keybp <- ggplot(data = data, mapping = aes(x = as.factor(condition), 
+                                           y = keystrokes, fill = as.factor(condition))) + 
+  geom_boxplot() +
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) +
+  labs(title = "Number of Keystrokes per Condition",
+       x = "Condition",
+       y = "Number of Keystrokes") +
+  theme(legend.position = "none")
+
+timebp/keybp
+```
+
+### Boxplots of Keystrokes and Time per Condition for each Professional Translator
+
+```{r}
+timebp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = time)) + 
+  geom_boxplot(aes(fill = as.factor(condition)), alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4, size = 1) + 
+  facet_wrap(~ PET, ncol = 4) + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Temporal Efficiency per Condition",
+       subtitle = "Divided by Professional Translator",
+       x = "Condition",
+       y = "Time (Seconds)") +
+  
+  theme(legend.position = "none", 
+        strip.background = element_rect(fill = "gray90"), 
+        panel.spacing = unit(1, "lines")) 
+
+print(timebp_faceted)
+
+keybp_faceted <- ggplot(data = data, aes(x = as.factor(condition), y = keystrokes)) + 
+  geom_boxplot(aes(fill = as.factor(condition)), alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4, size = 1) + 
+  facet_wrap(~ PET, ncol = 4) + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Number of Keystrokes per Condition",
+       subtitle = "Divided by Professional Translator",
+       x = "Condition",
+       y = "Number of Keystrokes") +
+  
+  theme(legend.position = "none", 
+        strip.background = element_rect(fill = "gray90"), 
+        panel.spacing = unit(1, "lines")) 
+
+print(keybp_faceted)
+```
+
+### Boxplots of Keystrokes and Time per Domain
+
+```{r}
+domainboxplots <- ggplot(data = data, mapping = aes(x = as.factor(domain),
+                                            y = log(time), fill = as.factor(domain))) + 
+  geom_boxplot() +
+  theme_minimal() +
+  scale_fill_okabeito(order = 2:3) +
+  labs(title = "Temporal Efficiency per Domain",
+       x = "Domain",
+       y = "Log Time (seconds)") +
+  theme(legend.position = "none")
+
+domainboxplots2 <- ggplot(data = data, mapping = aes(x = as.factor(domain),
+                                                    y = log(keystrokes), fill = as.factor(domain))) + 
+  geom_boxplot() +
+  theme_minimal() +
+  scale_fill_okabeito(order = 2:3) +
+  labs(title = "Number of Keystrokes per Domain",
+       x = "Domain",
+       y = "Log Number of Keystrokes") +
+  theme(legend.position = "none")
+
+domainboxplots + domainboxplots2
+```
+
+### Boxplots of Keystrokes and Time per Domain per Professional Translator
+
+```{r}
+domain_time_faceted <- ggplot(data = data, aes(x = as.factor(domain), y = time)) + 
+  geom_boxplot(aes(fill = as.factor(domain)), alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4, size = 1) + 
+  facet_wrap(~ PET, ncol = 4) + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 1:2) + 
+  
+  labs(title = "Temporal Efficiency per Domain",
+       subtitle = "Divided by Professional Translator",
+       x = "Domain",
+       y = "Time (Seconds)") +
+  
+  theme(legend.position = "none", 
+        strip.background = element_rect(fill = "gray90"), 
+        panel.spacing = unit(1, "lines")) 
+domain_time_faceted
+
+domain_key_faceted <- ggplot(data = data, aes(x = as.factor(domain), y = keystrokes)) + 
+  geom_boxplot(aes(fill = as.factor(domain)), alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4, size = 1) + 
+  facet_wrap(~ PET, ncol = 4) + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 1:2) + 
+  
+  labs(title = "Number of Keystrokes per Domain",
+       subtitle = "Divided by Professional Translator",
+       x = "Domain",
+       y = "Number of Keystrokes") +
+  
+  theme(legend.position = "none", 
+        strip.background = element_rect(fill = "gray90"), 
+        panel.spacing = unit(1, "lines")) 
+domain_key_faceted
+```
+
+### Boxplots for each text
+
+```{r}
+texts_boxplots_time <- ggplot(data, aes(x = text_name, y = log(time + 1), fill = as.factor(condition))) +
+  geom_boxplot(alpha = 0.7, outlier.size = 1) +
+  facet_wrap(~ domain, scales = "free_x") + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Time distribution divided by Document and Condition",
+       subtitle = "(Medical vs News)",
+       x = "Document (Text Name)",
+       y = "log(Time + 1) (Seconds)",
+       fill = "Condition") +
+  
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom",
+        strip.background = element_rect(fill = "gray90"))
+print(texts_boxplots_time)
+
+texts_boxplots_keys <- ggplot(data, aes(x = text_name, y = log(keystrokes+1), fill = as.factor(condition))) +
+  geom_boxplot(alpha = 0.7, outlier.size = 1) +
+  facet_wrap(~ domain, scales = "free_x") + 
+  
+  theme_minimal() +
+  scale_fill_okabeito(order = 3:6) + 
+  
+  labs(title = "Keystrokes distribution divided by Document and Condition",
+       subtitle = "(Medical vs News)",
+       x = "Document (Text Name)",
+       y = "log(Keystrokes + 1)",
+       fill = "Condition") +
+  
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom",
+        strip.background = element_rect(fill = "gray90"))
+print(texts_boxplots_keys)
+```
+
+### Stacked Bar Chart of Perceived Quality of MT and Perceived Difficulty
+
+```{r}
+ggplot(data, aes(x = condition, fill = `How good was the quality of MT?`)) +
+  geom_bar(position = "fill") +
+  scale_y_reverse(labels = scales::percent) +
+  scale_fill_manual(values = c(
+    "Insufficient" = "firebrick", 
+    "Fair"         = "#FFF176",  
+    "Good"         = "#81C784",  
+    "Very good"    = "navy"      
+  )) +
+  theme_minimal() +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  labs(title = "Percieved Quality of MT per Condition",
+       y = "Percentage", x = "Condition")
+
+
+ggplot(data, aes(x = condition, fill = `How difficult to translate was the source text?`)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  labs(title = "Percieved Difficulty of PE per Condition",
+       y = "Percentage", x = "Condition")
+```
+
+### Scatter Plots of Time or Keystrokes vs Highlight ratio or Number of Characters
+
+```{r}
+plot_data <- data %>%
+  mutate(
+    log_time = log(time+1),
+    log_keystrokes = log(keystrokes+1),
+    highlight_ratio = as.numeric(as.character(highlight_ratio)),
+    condition = as.factor(condition)
+  ) %>%
+  filter(!is.na(highlight_ratio), !is.na(num_characters))
+
+# 1. Time vs Highlight Ratio
+p1 <- ggplot(plot_data, aes(x = highlight_ratio, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Time vs Highlight Ratio", y = "log(Time)")
+
+# 2. Keystrokes vs Highlight Ratio
+p2 <- ggplot(plot_data, aes(x = highlight_ratio, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Keystrokes vs Highlight Ratio", y = "log(Keystrokes)")
+
+# 3. Time vs Num Characters
+p3 <- ggplot(plot_data, aes(x = num_characters, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Time vs Sentence Length", x = "Num Characters", y = "log(Time)")
+
+# 4. Keystrokes vs Num Characters
+p4 <- ggplot(plot_data, aes(x = num_characters, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_minimal() + labs(title = "Keystrokes vs Sentence Length", x = "Num Characters", y = "log(Keystrokes)")
+
+(p1 | p2) / (p3 | p4) + plot_layout(guides = 'collect')
+```
+
+### Number of major and Minor errors compared to time and Keystrokes
+
+```{r}
+# 1. Time vs Major Errors
+p11 <- ggplot(plot_data, aes(x = num_major, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Time vs Major Errors", x = "Num of Minor Errors", y = "log(Time)")
+
+# 2. Keystrokes vs Major Errors
+p12 <- ggplot(plot_data, aes(x = num_major, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Keystrokes vs Major Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
+
+# 3. Time vs Minor Errors
+p13 <- ggplot(plot_data, aes(x = num_minor, y = log_time)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Time vs Minor Errors", x = "Num of Minor Errors", y = "log(Time)")
+
+# 4. Keystrokes vs Minor Errors
+p14 <- ggplot(plot_data, aes(x = num_minor, y = log_keystrokes)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, col = "firebrick1") +
+  theme_minimal() + labs(title = "Keystrokes vs Minor Errors", x = "Num of Minor Errors", y = "log(Keystrokes)")
+
+(p11 | p12) / (p13 | p14) + plot_layout(guides = 'collect')
+
+```
+
+### Percentage of suggestions accepted vs Keystrokes condition 4
+
+```{r}
+data_plot <- data %>%
+  filter(condition == 4) %>%
+  mutate(
+    prc_sugg_accepted = as.numeric(as.character(prc_sugg_accepted))) %>%
+  filter(!is.na(prc_sugg_accepted))
+
+ggplot(data_plot, aes(x = prc_sugg_accepted, y = keystrokes)) +
+  geom_point(alpha = 0.6, color = "navy") +
+  geom_smooth(method = "lm", color = "firebrick", se = TRUE) + 
+  theme_minimal() +
+  labs(
+    title = "Percentage of Accepted Suggestions vs. Keystrokes",
+    subtitle = "Under Condition 4",
+    x = "% Suggestions Accepted",
+    y = "Number of Keystrokes"
+  )
+
+```
+
+\newpage
+# Model Building - Time
+
+### Analysis of outcome variable distribution
+
+```{r}
+zeros<-data[data$time == 0,]
+table(zeros$condition, zeros$domain)
+table(data$condition, data$domain)
+
+View(subset(data, condition == 1 & domain == "medical"))
+
+data_clean <- data %>%
+  filter(time > 1)
+
+p1 <- ggplot(data_clean, aes(x = time)) +
+  geom_histogram(aes(y = ..density..), bins = 30, 
+                 fill = "#69b3a2", color = "white", alpha = 0.7) +
+  geom_density(color = "#404040", size = 1) +
+  theme_modern() +
+  labs(title = "Histogram of Elapsed Time",
+       x = "Time (seconds)", y = "Density")
+
+p2 <- ggplot(data_clean, aes(x = sqrt(time))) +
+  geom_histogram(aes(y = ..density..), bins = 30, 
+                 fill = "#40739e", color = "white", alpha = 0.7) +
+  geom_density(color = "#404040", size = 1) +
+  theme_modern() +
+  labs(title = "Histogram of Elapsed Time after log-transformation",
+       x = "Time (log-seconds)", y = "Density")
+
+p1 + p2
+```
+
+The Outcome variable is going to be log-transformed to address the skewness distribution.
+In the context of a linear mixed-effects model, this transformation shifts the modeling assumptions from additive to  multiplicative, therefore making interpretation centered on proportional changes rather than absolute differences.
+
+## Model Building test 1 - raw data
+
+```{r}
+model_full <- lmer(log(time+1) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                     (1 | PET) + (1 | text_name / Sent_id), 
+                   data = data, 
+                   REML = FALSE)
+
+summary(model_full)
+# Singular Fit, must simplify the random part
+
+model_2 <- lmer(log(time+1) ~ 
+                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
+                data = data, 
+                REML = FALSE)
+
+summary(model_2)
+
+model_2.1 <- lmer(log(time+1) ~ 
+                  condition * domain + num_characters + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
+                data = data, 
+                REML = FALSE)
+
+summary(model_2.1)
+
+anova(model_2, model_2.1)
+
+model_3 <- lmer(log(time+1) ~ 
+                  condition * domain + num_characters + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
+                data = data, 
+                REML = TRUE)
+summary(model_3)  
+```
+
+
+```{r}
+plot(model_3, which = 1, main = "Residuals vs Fitted") 
+qqnorm(residuals(model_3))
+qqline(residuals(model_3), col = "red")
+```
+
+There is a systematic pattern of errors due to the presence of time = 0 observations violating the assumption of homoscedasticity (constant variance of errors)
+
+The QQplot is completely skewed in lower values aswell
+residuals are NOT normally distributed.
+
+Therefore results are unreliable
+
+## Model Building test 2 - Dataset with removed 0 time instances
+
+```{r}
+model_full <- lmer(log(time+1) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                     (1 | PET) + (1 | text_name / Sent_id), 
+                   data = data_clean, 
+                   REML = FALSE)
+
+summary(model_full)
+
+model_2 <- lmer(log(time+1) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                     (1 | PET) + (1 | text_name / Sent_id), 
+                   data = data_clean, 
+                   REML = FALSE)
+
+summary(model_2)
+
+anova(model_full, model_2)
+
+model_3 <- lmer(log(time+1) ~ 
+                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                  (1 | PET) + (1 | text_name / Sent_id), 
+                data = data_clean, 
+                REML = TRUE)
+summary(model_3)  
+```
+
+```{r}
+plot(model_3, which = 1, main = "Residuals vs Fitted")
+qqnorm(residuals(model_3))
+qqline(residuals(model_3), col = "red")
+```
+
+Assumptions checked, residuals are normally distributed
+
+limit of this model is: 
+removing zeros is CONCEPTUALLY WRONG 
+as they are not MCAR (missing completely at random)
+this causes SELECTION BIAS
+
+## Model Building test 3 (Option 1) - dataset with 0 time instances substituted with number of characters/20
+
+Under the assumption a professional translator takes around 1 second to make sure 20 characters contain no errors and should not be edited.
+
+```{r}
+data_impute <- data
+data_impute$time_fixed <- ifelse(data_impute$time == 0, data_impute$num_characters / 20, data_impute$time)
+View(data_impute[data_impute$time == 0,])
+```
+
+```{r}
+model_full <- lmer(log(time_fixed) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                     (1 | PET) + (1 | text_name / Sent_id), 
+                   data = data_impute, 
+                   REML = FALSE)
+# Singular Fit
+
+model_2 <- lmer(log(time_fixed) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                     (1 | PET) + (1 | text_name : Sent_id), 
+                   data = data_impute, 
+                   REML = FALSE)
+
+summary(model_2)
+
+model_fixed <- lmer(log(time_fixed) ~ 
+                      condition * domain + num_characters + 
+                      num_minor + num_major + MT_Quality + 
+                      (1 | PET) + (1 | text_name : Sent_id), 
+                    data = data_impute, REML = TRUE)
+
+summary(model_fixed)
+```
+
+Condition 2 effect is statistically significant in medical domain and lowers elapsed time by 27% compared to baseline.
+
+### Effects Plots
+
+```{r}
+eff_int <- predict_response(model_fixed, terms = c("condition", "domain"))
+
+plot(eff_int) + 
+  labs(
+    title = "Predicted Translation Time by Condition and Domain",
+    subtitle = "Values back-transformed from Log to Seconds",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+plot_model(model_fixed, 
+           type = "est", 
+           show.values = TRUE, 
+           value.offset = .3,
+           title = "Fixed Effects Estimates (Log Scale)")
+```
+
+```{r}
+icc_results1 <- icc(model_fixed)
+
+print(icc_results1) # Random effects account for 18% of total variance
+
+r2_results1 <- r2(model_fixed)
+
+print(r2_results1) # 31% of total variance comes from fixed effects
+# R2 is 49%
+
+random_effects <- ranef(model_fixed)
+plot_model(model_fixed, type = "re", grid = FALSE)[[2]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: PET (Translators)")
+plot_model(model_fixed, type = "re", grid = FALSE)[[1]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: Sentence ID")
+```
+
+### Assumptions Check
+
+```{r}
+diag_data <- data.frame(
+  Fitted = fitted(model_fixed),
+  Residuals = residuals(model_fixed)
+)
+
+d1 <- ggplot(diag_data, aes(x = Fitted, y = Residuals)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Residuals vs Fitted",
+       x = "Fitted Values",
+       y = "Residuals") +
+  theme_minimal()
+
+d2 <- ggplot(diag_data, aes(sample = Residuals)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "Normal Q-Q Plot",
+       x = "Theoretical Quantiles",
+       y = "Sample Quantiles") +
+  theme_minimal()
+
+d1+d2
+```
+
+```{r}
+pet_re <- ranef(model_fixed)$PET[,1]
+qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
+qqline(pet_re, col = "red")
+check_model(model_fixed) # The high VIF does not distort the model's standard errors or the significance of our main findings, it can be safely ignored.
+```
+
+### Contrast Analysis - Switch of Baseline
+
+```{r}
+data_impute$condition <- relevel(as.factor(data_impute$condition), ref = "2")
+model_fixed <- lmer(log(time_fixed) ~ 
+                      condition * domain + num_characters + 
+                      num_minor + num_major + MT_Quality + 
+                      (1 | PET) + (1 | text_name : Sent_id), 
+                    data = data_impute, REML = TRUE)
+
+summary(model_fixed)
+```
+
+## Model Building test 4 (Option 2) - dataset with instances with time = 0 substituted with newly proposed times
+
+### Dataset Loading + Merging
+```{r}
+data_time <- read_csv("data/data_time.csv")
+View(data_time)
+
+indices_zeros <- which(data$time == 0)
+
+data$time_hybrid <- data$time
+data$time_hybrid[indices_zeros] <- data_time$time
+
+data_clean2 <- data[data$time_hybrid>1,] # There are only 3 instances still with unrealistic values, all in different condition groups, can assume they are MCAR
+```
+
+```{r}
+model_hyb <- lmer(log(time_hybrid) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                     (1 | PET) + (1 | text_name / Sent_id), 
+                   data = data_clean2, 
+                   REML = FALSE)
+
+summary(model_hyb)
+
+model_hyb2 <- lmer(log(time_hybrid) ~ 
+                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
+                data = data_clean2, 
+                REML = FALSE)
+
+summary(model_hyb2)
+
+
+model_hyb3 <- lmer(log(time_hybrid) ~ 
+                  condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                  (1 | PET) + (1 | text_name : Sent_id), 
+                data = data_clean2, 
+                REML = TRUE)
+summary(model_hyb3)
+```
+
+In medical texts all condition effects are statistically relevant compared to the baseline.
+- Condition 2 reduces time by 40.6% in medical texts.
+- Condition 3 by 31.1% in medical texts.
+- Condition 4 by 27.5% in medical and news texts.
+
+### Effects Plots
+
+```{r}
+eff_int_hyb <- predict_response(model_hyb3, terms = c("condition", "domain"))
+plot(eff_int_hyb) + 
+  labs(
+    title = "Predicted Translation Time by Condition and Domain",
+    subtitle = "Values back-transformed from Log to Seconds",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+plot_model(model_hyb3, 
+           type = "est", 
+           show.values = TRUE, 
+           value.offset = .3,
+           title = "Fixed Effects Estimates (Log Scale)")
+```
+
+```{r}
+icc_results2 <- icc(model_hyb3) 
+
+print(icc_results2) #random part accounts for 21% of total variance
+
+r2_results2 <- r2(model_hyb3) # fixed effects are 28% of total variance
+
+print(r2_results2) 
+# R2 is 49%
+
+random_effects <- ranef(model_hyb3)
+plot_model(model_hyb3, type = "re", grid = FALSE)[[2]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: PET (Translators)")
+plot_model(model_hyb3, type = "re", grid = FALSE)[[1]] + 
+  theme_minimal() +
+  labs(title = "Random Effects: Sentence ID")
+```
+
+### Assumptions Check
+
+```{r}
+diag_data <- data.frame(
+  Fitted = fitted(model_hyb3),
+  Residuals = residuals(model_hyb3)
+)
+
+d1 <- ggplot(diag_data, aes(x = Fitted, y = Residuals)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(title = "Residuals vs Fitted",
+       x = "Fitted Values",
+       y = "Residuals") +
+  theme_minimal()
+
+d2 <- ggplot(diag_data, aes(sample = Residuals)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "Normal Q-Q Plot",
+       x = "Theoretical Quantiles",
+       y = "Sample Quantiles") +
+  theme_minimal()
+
+d1+d2
+# residuals are normally distributed
+```
+
+```{r}
+pet_re <- ranef(model_hyb3)$PET[,1]
+qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
+qqline(pet_re, col = "red")
+check_model(model_hyb3) # The high VIF does not distort the model's standard errors or the significance of our main findings, it can be safely ignored.
+```
+
+Limit of this analysis is that the newly imputed times are measured differently than the originals they may be affected by external factors, such as translator taking breaks, and longer time to actually start the task.
+
+### Contrast Analysis - Switch of Baseline
+
+```{r}
+data_clean2$condition <- relevel(as.factor(data_clean2$condition), ref = "2")
+model_hyb3 <- lmer(log(time_hybrid) ~ 
+                     condition * domain + num_characters + num_minor + num_major + MT_Quality + 
+                     (1 | PET)+ (1 | text_name : Sent_id), 
+                   data = data_clean2, 
+                   REML = TRUE)
+summary(model_hyb3)
+```
+
+### Improved Plots
+```{r}
+my_colors <- c("medical" = "#2c3e50", "news" = "#e67e22") # Blu notte e Arancione
+my_labels <- c("PE", "H-QE", "H-APE", "S-APE")
+
+p11 <- plot(eff_int) + 
+  scale_x_continuous(breaks = 1:4, labels = my_labels) + 
+  scale_color_manual(values = my_colors) + 
+  labs(
+    title = "Option 1: Min Threshold",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+p22 <- plot(eff_int_hyb) + 
+  scale_x_continuous(breaks = 1:4, labels = my_labels) + 
+  scale_color_manual(values = my_colors) + 
+  labs(
+    title = "Option 2: Screen Time",
+    x = "Condition", 
+    y = "Estimated Time (Seconds)",
+    colour = "Domain"
+  ) +
+  theme_minimal()
+
+combined_plot <- p11 + p22 + 
+  plot_layout(guides = "collect") + 
+  plot_annotation(
+    title = "Predicted Translation Time: Comparison of Imputation Scenarios",
+    subtitle = "Values back-transformed from Log to Seconds",
+    tag_levels = 'a', 
+    tag_prefix = '(',
+    tag_suffix = ')'
+  ) & 
+  theme(
+    legend.position = "right",
+    plot.title = element_text(face = "bold")
+  )
+
+combined_plot
+```
+
+\newpage
+
+# Model Building - Keystrokes 
+
+### Analysis of outcome variable distribution
+
+```{r}
+ggplot(data, aes(x = keystrokes)) +
+  geom_histogram(aes(y = ..density..),
+                 bins = 30,
+                 fill = "lightblue",
+                 color = "black") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Distribution of Keystrokes",
+       x = "Keystrokes",
+       y = "Density")
+```
+
+## Tweedie GLMM
+
+The Tweedie distribution is a member of the Exponential Dispersion Family. Here, it is specifically a Compound Poisson-Gamma distribution.
+
+It acts as a single mathematical framework that handles two processes at once:
+1) The Discrete Part (Poisson) models the probability of an event occurring (e.g., whether the translator chooses to edit the sentence or leave it at 0 keystrokes);
+The Continuous Part (Gamma) models the magnitude of the event (e.g., if they do edit, how many keystrokes are required)
+
+
+```{r}
+full_model <- glmmTMB(keystrokes ~ condition * domain + num_characters + num_minor + num_major + MT_Quality + Difficulty + 
+                   (1 | PET) + (1 | text_name) + (1 | Sent_id), 
+                 family = tweedie(), data = data, REML = FALSE)
+summary(full_model)
+
+full_model$sdr$pdHess
+
+res <- simulateResiduals(full_model)
+plot(res)
+```
+
+```{r}
+# A more simplified model
+refined_model <- glmmTMB(keystrokes ~ condition * domain + 
+                             num_characters + num_minor + num_major + 
+                             MT_Quality + Difficulty + 
+                             (1 | PET) + (1 | text_name), 
+                           family = tweedie(), 
+                           data = data)
+
+summary(refined_model)
+```
+
+### 1. Scale variables to get numerical stability and Check stability
+
+```{r}
+final_recovery_model <- glmmTMB(
+  keystrokes ~ condition * domain + 
+    scale(num_characters) + 
+    scale(num_minor) + 
+    scale(num_major) + 
+    scale(MT_Quality) + 
+    scale(Difficulty) + 
+    (1 | PET) +
+    (1 | text_name / Sent_id),       
+  family = tweedie(), 
+  data = data
+)
+
+final_recovery_model$sdr$pdHess
+res <- simulateResiduals(final_recovery_model)
+plot(res)
+
+summary(final_recovery_model)
+```
+
+### Visualising random intercepts
+
+```{r}
+plot_model(final_recovery_model, type = "re")
+```
+
+### Simplifying the model to make residuals homoschedastic
+
+```{r}
+# Creating the simplified version: no interaction term
+reduced_model <- update(final_recovery_model, . ~ . - condition:domain)
+
+# Compare them
+anova(final_recovery_model, reduced_model)
+# no significant differences in predictive power and AIC and BIC are lower, we keep the reduced
+
+# Check Variance Inflation Factors
+performance::check_collinearity(final_recovery_model) # since the full model has interaction terms. VIFs might be affected
+performance::check_collinearity(reduced_model) # here no highly correlated variables
+```
+
+### Check stability
+
+```{r}
+final_recovery_model$sdr$pdHess
+res <- simulateResiduals(reduced_model)
+plot(res)
+```
+
+Further Simplification
+
+```{r}
+summary(reduced_model)
+
+reduced_model_noDiff <- update(reduced_model, . ~ . - scale(Difficulty))
+
+res <- simulateResiduals(reduced_model_noDiff)
+# Nella grafica base di R il titolo si assegna con 'main'
+plot(res)
+# now it works
+
+summary(reduced_model_noDiff)
+anova(reduced_model, reduced_model_noDiff)
+# clear indication to stick with the second reduced model (no difficulty)
+
+```
+
+### Plotting the regressors' effects on keystrokes
+
+```{r}
+# extract fixed effects table
+coefs <- summary(reduced_model_noDiff)$coefficients$cond
+df <- as.data.frame(coefs)
+
+# add term names
+df$term <- rownames(df)
+
+# rename columns for convenience
+df <- df %>%
+  rename(
+    estimate = Estimate,
+    std.error = `Std. Error`,
+    p.value = `Pr(>|z|)`
+  )
+
+# get confidence intervals
+ci <- confint(reduced_model_noDiff, method = "Wald")
+
+# keep only fixed effects
+ci <- as.data.frame(ci)
+ci$term <- rownames(ci)
+
+df <- df %>%
+  left_join(ci, by = "term") %>%
+  rename(conf.low = `2.5 %`, conf.high = `97.5 %`)
+
+# remove intercept
+df <- df %>%
+  filter(term != "(Intercept)")
+
+# relabel terms
+df <- df %>%
+  mutate(
+    term = recode(term,
+                  "condition2" = "H-QE",
+                  "condition3" = "H-APE",
+                  "condition4" = "S-APE",
+                  "domainnews" = "Domain: News",
+                  "scale(num_characters)" = "Text length",
+                  "scale(num_minor)" = "Minor errors",
+                  "scale(num_major)" = "Major errors",
+                  "scale(MT_Quality)" = "MT quality"
+    ),
+    significance = ifelse(p.value < 0.05, "Significant", "Not significant")
+  )
+
+df <- df %>%
+  mutate(significant_flag = p.value < 0.05) %>%
+  arrange(desc(significant_flag), desc(abs(estimate))) %>%
+  mutate(term = factor(term, levels = rev(term)))
+```
+
+```{r}
+p <- ggplot(df, aes(x = estimate, y = term)) +
+  geom_vline(xintercept = 0, linetype = "dashed", linewidth = 0.6, color = "gray50") +
+  
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high),
+                 height = 0.2, linewidth = 0.8, color = "gray40") +
+
+  geom_point(aes(shape = as.factor(!significant_flag)),
+             size = 3, stroke = 1.1, color = "black") +
+  
+  scale_shape_manual(
+    name = NULL,              
+    values = c(16, 1),        
+    labels = c("Significant", "Not Significant") 
+  ) +
+  
+  labs(
+    title = "Effects on Keystrokes",
+    subtitle = "Estimates with 95% confidence intervals (log scale)",
+    x = "Effect size",
+    y = NULL
+  ) +
+  
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "gray30"),
+    axis.text.y = element_text(size = 11),
+    axis.text.x = element_text(size = 10),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_line(color = "gray85"),
+    plot.margin = margin(10, 15, 10, 10),
+    legend.position = "right"
+  )
+
+p
+
+```
+
+### Random Intercepts plots
+
+```{r}
+sjPlot::plot_model(reduced_model_noDiff, type = "re", grid = FALSE)[[2]]+
+  theme_minimal()+
+  labs(x = "Text", y= "Random Intercept", title = "Random Effects: Texts")
+
+```
+
+## Comparing final model Vs other models
+
+```{r}
+# Defining main formula
+main_formula <- keystrokes ~ condition + domain + scale(num_characters) + 
+  scale(num_minor) + scale(num_major) + scale(MT_Quality) + 
+  (1 | PET) + (1 | text_name / Sent_id)
+
+# Current Tweedie Model
+mod_tweedie <- glmmTMB(main_formula, 
+                       family = tweedie(link = "log"), 
+                       data = data)
+
+
+# Zero-Inflated Negative Binomial
+# (Assumes some zeros come from a separate always-zero process)
+mod_zinb <- glmmTMB(main_formula, 
+                    ziformula = ~1, 
+                    family = nbinom2, 
+                    data = data)
+
+# 3. Hurdle Model (Truncated Negative Binomial)
+# (Assumes a process: 0 vs >0, then counts for the rest)
+mod_hurdle <- glmmTMB(main_formula, 
+                      ziformula = ~., 
+                      family = truncated_nbinom2, 
+                      data = data)
+
+```
+
+```{r}
+comparison <- compare_performance(mod_tweedie, mod_zinb, mod_hurdle, metrics = "common")
+print(comparison)
+
+# The 'rho' (power parameter)
+glmmTMB::family_params(mod_tweedie)
+
+```
+
+Even though the Hurdle model has a slightly lower AIC, 
+We would argue for the Tweedie model for three reasons:
+1) The BIC weight for the Tweedie model is >.999. This is a massive statistical signal that the Tweedie model is the most parsimonious. 
+2) The Tweedie model has the lowest RMSE (31.539). This means its actual predictions are closer to actual data points than the other two models.
+3) In the Tweedie model, the Itra Class Correlation (ICC) is 0.548, while in the ZI model, it's 0.956, which is high and might suggests that the model is struggling to separate the random effects from the zero-inflation logic.
+
