@@ -33,7 +33,7 @@ library(DHARMa)
 library(forcats)
 
 # Loading dataset
-data <- read_csv("data/data.csv")
+data <- read_csv("../data/data.csv")
 ```
 
 # Data Wrangling
@@ -699,7 +699,7 @@ summary(model_fixed)
 
 ### Dataset Loading + Merging
 ```{r}
-data_time <- read_csv("data/data_time.csv")
+data_time <- read_csv("../data/data_time.csv")
 View(data_time)
 
 indices_zeros <- which(data$time == 0)
