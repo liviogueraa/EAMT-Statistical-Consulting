@@ -5,12 +5,12 @@ This repository contains the data and code for the EAMT Statistical Consulting p
 
 ## 📁 Directory Structure
 
-├── EAMT-Statistical-Consulting.Rproj # R Project File (to open first!)
-├── README.md
-├── .gitignore
-├── data/
-│   └── data.csv                      # Original Dataset        
-│   └── data_time.csv                 # New time observations 
-├── analysis/
-│   └── complete-analysis-code.Rmd    # Final Code Report
+├── EAMT-Statistical-Consulting.Rproj # R Project File (to open first!)  
+├── README.md  
+├── .gitignore  
+├── data/  
+│   └── data.csv                      # Original Dataset          
+│   └── data_time.csv                 # New time observations   
+├── analysis/  
+│   └── complete-analysis-code.Rmd    # Final Code Report  
 │   └── complete-analysis-code.html   
