@@ -1042,7 +1042,7 @@ df <- df %>%
                   "condition3" = "H-APE",
                   "condition4" = "S-APE",
                   "domainnews" = "Domain: News",
-                  "scale(num_characters)" = "Text length",
+                  "scale(num_characters)" = "Sentence length",
                   "scale(num_minor)" = "Minor errors",
                   "scale(num_major)" = "Major errors",
                   "scale(MT_Quality)" = "MT quality"
