@@ -25,7 +25,6 @@ library(lme4)
 library(lmerTest)
 library(lattice)
 library(sjPlot)  
-library(mice)
 library(performance)
 library(ggeffects)
 library(glmmTMB)
@@ -602,7 +601,7 @@ model_fixed <- lmer(log(time_fixed) ~
 summary(model_fixed)
 ```
 
-Condition 2 effect is statistically significant in medical domain and lowers elapsed time by 27% compared to baseline.
+Condition 2 vs Condition 1 difference is statistically significant in medical domain and lowers elapsed time by 27% compared to baseline.
 
 ### Effects Plots
 
@@ -679,6 +678,9 @@ d1+d2
 pet_re <- ranef(model_fixed)$PET[,1]
 qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
 qqline(pet_re, col = "red")
+```
+
+```{r, fig.width=12, fig.height=10, fig.align='center'}
 check_model(model_fixed) # The high VIF does not distort the model's standard errors or the significance of our main findings, it can be safely ignored.
 ```
 
@@ -740,6 +742,7 @@ In medical texts all condition effects are statistically relevant compared to th
 - Condition 2 reduces time by 40.6% in medical texts.
 - Condition 3 by 31.1% in medical texts.
 - Condition 4 by 27.5% in medical and news texts.
+values are calculated by log transforming back ((1 ??? e?? ) × 100))
 
 ### Effects Plots
 
@@ -813,6 +816,9 @@ d1+d2
 pet_re <- ranef(model_hyb3)$PET[,1]
 qqnorm(pet_re, main = "Q-Q Plot: Random Effects (PET)")
 qqline(pet_re, col = "red")
+```
+
+```{r, fig.width=12, fig.height=10, fig.align='center'}
 check_model(model_hyb3) # The high VIF does not distort the model's standard errors or the significance of our main findings, it can be safely ignored.
 ```
 
