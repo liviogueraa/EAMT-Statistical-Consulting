@@ -435,6 +435,10 @@ ggplot(data_plot, aes(x = prc_sugg_accepted, y = keystrokes)) +
 
 ```
 
+### Time and Keystrokes Distribution per different categories
+
+
+
 \newpage
 # Model Building - Time
 
@@ -469,7 +473,31 @@ p2 <- ggplot(data_clean, aes(x = sqrt(time))) +
 p1 + p2
 ```
 
-The Outcome variable is going to be log-transformed to address the skewness distribution.
+```{r, fig.width=12, fig.height=10, fig.align='center'}
+h1 <-ggplot(data, aes(x = log(time))) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black", alpha = 0.7) +
+  facet_wrap(~ PET) +
+  theme_minimal() +
+  labs(title = "Log-Time Distribution per PET", x = "Time (seconds)", y = "Count")
+
+h2 <-ggplot(data, aes(x = log(time))) +
+  geom_histogram(bins = 30, fill = "lightcoral", color = "black", alpha = 0.7) +
+  facet_wrap(~ condition) +
+  theme_minimal() +
+  labs(title = "Log-Time Distribution per Condition", x = "Time (seconds)", y = "Count")
+
+h3 <-ggplot(data, aes(x = log(time))) +
+  geom_histogram(bins = 30, fill = "lightyellow", color = "black", alpha = 0.7) +
+  facet_wrap(~ text_name) +
+  theme_minimal() +
+  labs(title = "Log-Time Distribution per Text", x = "Time (seconds)", y = "Count")
+
+h1 + h2 / h3
+```
+
+
+The Outcome variable is going to be log-transformed to address the skewness distribution. 
+In terms of distribution shapes across the different experimental groups (conditions, texts, and individual translators), this transformation carries a fundamental assumption: it implies that while the groups may have different means and variances on the raw scale, their underlying asymmetry follows a similar proportional pattern, as they more or less seem to be doing. 
 In the context of a linear mixed-effects model, this transformation shifts the modeling assumptions from additive to  multiplicative, therefore making interpretation centered on proportional changes rather than absolute differences.
 
 ## Model Building test 1 - raw data
