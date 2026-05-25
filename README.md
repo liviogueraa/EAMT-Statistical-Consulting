@@ -22,7 +22,7 @@ Livio Guerra, Faculty of Science, Leiden University
 │  
 ├── analysis/  
 │   └── complete-analysis-code.Rmd    # Final Code Report  
-│   └── complete-analysis-code.html   
+│   └── complete-analysis-code.html   # Final Code Complete Output
 ```
 
 To run the Analysis first open the `EAMT-Statistical-Consulting.Rproj` folder.
