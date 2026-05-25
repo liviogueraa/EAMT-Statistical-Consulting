@@ -9,7 +9,8 @@ Livio Guerra, Faculty of Science, Leiden University
 
 ## 📁 Directory Structure
 
-├── EAMT-Statistical-Consulting.Rproj # R Project File (to open first!)  
+```text
+├── EAMT-Statistical-Consulting.Rproj # R Project File 
 ├── README.md  
 ├── .gitignore  
 ├── data/  
@@ -18,3 +19,10 @@ Livio Guerra, Faculty of Science, Leiden University
 ├── analysis/  
 │   └── complete-analysis-code.Rmd    # Final Code Report  
 │   └── complete-analysis-code.html   
+```
+
+To run the Analysis first open the `EAMT-Statistical-Consulting.Rproj` folder.
+Then make sure every required R package is installed. And finally the `analysis/complete-analysis-code.Rmd` can be ran or instead knitted into a .pdf or .html file. An output example is already present (`analysis/complete-analysis-code.html`).  
+
+
+This work is purely intended for academic purposes.
