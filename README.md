@@ -1,6 +1,10 @@
 # EAMT-Statistical-Consulting
 This repository contains the data and code for the EAMT Statistical Consulting project. The goal of this study is to perform a statistical evaluation of Post-Editing Machine Translation (PEMT), specifically we analyze how professional English-to-Dutch translators interact with four distinct levels of AI assistance across specialized medical and general news texts.
 
+Authors:
+Andrea Camasta, Faculty of Science, Leiden University
+Livio Guerra, Faculty of Science, Leiden University
+
 ---
 
 ## 📁 Directory Structure
