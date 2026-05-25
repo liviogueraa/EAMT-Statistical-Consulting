@@ -27,6 +27,3 @@ Livio Guerra, Faculty of Science, Leiden University
 
 To run the Analysis first open the `EAMT-Statistical-Consulting.Rproj` folder.
 Then make sure every required R package is installed. And finally the `analysis/complete-analysis-code.Rmd` can be ran or instead knitted into a .pdf or .html file. An output example is already present (`analysis/complete-analysis-code.html`).  
-
-
-This work is purely intended for academic purposes.
