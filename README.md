@@ -10,19 +10,19 @@ Livio Guerra, Faculty of Science, Leiden University
 ## 📁 Directory Structure
 
 ```text
-├── EAMT-Statistical-Consulting.Rproj # R Project File
-│  
-├── README.md
-│  
-├── .gitignore
+├── analysis/  
+│   └── complete-analysis-code.Rmd    # Final Code Report  
+│   └── complete-analysis-code.html   # Final Code Complete Output  
 │  
 ├── data/  
 │   └── data.csv                      # Original Dataset          
 │   └── data_time.csv                 # New time observations
 │  
-├── analysis/  
-│   └── complete-analysis-code.Rmd    # Final Code Report  
-│   └── complete-analysis-code.html   # Final Code Complete Output
+├── .gitignore
+│  
+├── EAMT-Statistical-Consulting.Rproj # R Project File
+│  
+├── README.md
 ```
 
 To run the Analysis first open the `EAMT-Statistical-Consulting.Rproj` folder.
