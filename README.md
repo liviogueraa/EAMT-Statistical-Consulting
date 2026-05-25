@@ -10,12 +10,16 @@ Livio Guerra, Faculty of Science, Leiden University
 ## 📁 Directory Structure
 
 ```text
-├── EAMT-Statistical-Consulting.Rproj # R Project File 
-├── README.md  
-├── .gitignore  
+├── EAMT-Statistical-Consulting.Rproj # R Project File
+│  
+├── README.md
+│  
+├── .gitignore
+│  
 ├── data/  
 │   └── data.csv                      # Original Dataset          
-│   └── data_time.csv                 # New time observations   
+│   └── data_time.csv                 # New time observations
+│  
 ├── analysis/  
 │   └── complete-analysis-code.Rmd    # Final Code Report  
 │   └── complete-analysis-code.html   
